@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\updateAdminFormValidation;
+use App\Http\Requests\adminFormValidation;
+use App\Http\Requests\companyFormValidation;
 use Illuminate\Http\Request;
 use Auth;
 use App\user;
@@ -50,13 +52,13 @@ class adminController extends Controller
     //     ]);
 
         $user = Auth::user();
-        $user->password = bcrypt($request->get('password'));
+        $user->password = Hash::make($request->get('password'));
         $user->save();
         return back()->with('success','Password changed successfully');
 
     }
     
-    public function create_admin(Request $request)
+    public function create_admin(adminFormValidation $request)
     {
 
         $store = new user;
@@ -65,7 +67,7 @@ class adminController extends Controller
         $store->email = $request->email;
         $store->mobile = $request->mobile;
         $pswd = $request->password;
-        $store->password = bcrypt($pswd);
+        $store->password = Hash::make($pswd);
         $store->role = '1';
         if($request->hasFile('avatar')){
             $file = $request->file('avatar');
@@ -83,7 +85,7 @@ class adminController extends Controller
         Session::flash('success','User has been added successfully');
         return redirect('/admin/create/user');
     }
-    public function create_company_by_admin(Request $request)
+    public function create_company_by_admin(companyFormValidation $request)
     {
         $store = new user;
         $store->name = $request->first_name;
@@ -91,7 +93,7 @@ class adminController extends Controller
         $store->email = $request->email;
         $store->mobile = $request->mobile;
         $pswd = $request->password;
-        $store->password = bcrypt($pswd);
+        $store->password = Hash::make($pswd);
         $store->role = '2';
 
         if($request->hasFile('avatar')){

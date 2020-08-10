@@ -1,6 +1,5 @@
 @extends('backend.admin') 
 @section('body')
-
 <div class="app-content content">
     <div class="content-wrapper">
         <div class="content-header row">
@@ -37,6 +36,14 @@
                             <h4><i class="fa fa-check"></i>&nbsp;Success !</h4>
                             <p class="alert-message">{{ session('update_user') }}</p>
                         </div>
+                        @endif
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger" role="alert">
+                                <h4><i class="fa fa-exclamation-triangle"></i>&nbsp;Error !</h4>
+                                @foreach ($errors->all() as $error)
+                                    <p class="alert-message">{{$error}}</p>
+                                @endforeach    
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -91,7 +98,7 @@
                                                     <div class="form-group row">
                                                         <div class="col-md-12">
                                                             <div class="position-relative has-icon-left">
-                                                                <input type="text" id="fname-icon" class="form-control" name="last_name" placeholder="Last Name">
+                                                                <input type="text" id="fname-icon" class="form-control" value="{{old('last_name')}}" name="last_name" placeholder="Last Name">
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-user"></i>
                                                                 </div>
@@ -103,7 +110,7 @@
                                                     <div class="form-group row">
                                                         <div class="col-md-12">
                                                             <div class="position-relative has-icon-left">
-                                                                <input type="email" id="email-icon" class="form-control" required name="email" placeholder="Email">
+                                                                <input type="email" id="email-icon" class="form-control" required value="{{old('email')}}" name="email" placeholder="Email">
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-mail"></i>
                                                                 </div>
@@ -115,7 +122,7 @@
                                                     <div class="form-group row">
                                                         <div class="col-md-12">
                                                             <div class="position-relative has-icon-left">
-                                                                <input type="number" id="contact-icon" class="form-control" name="mobile" placeholder="Mobile">
+                                                                <input type="number" id="contact-icon" class="form-control" required value="{{old('mobile')}}" name="mobile" placeholder="Mobile">
                                                                 <div class="form-control-position">
                                                                     <i class="feather icon-smartphone"></i>
                                                                 </div>
