@@ -1,0 +1,705 @@
+
+.rating {
+  font-size: 34px;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 10px;
+}
+.rating1:hover:before {
+  content: "😡";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+  
+
+}
+.rating2:hover:before {
+  content: "😣";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating3:hover:before {
+  content: "☹️";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+}
+.rating4:hover:before {
+  content: "❤️";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating5:hover:before {
+  content: "😐";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating6:hover:before {
+  content: "🙂";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating7:hover:before {
+  content: "😊";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating8:hover:before {
+  content: "😁";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating9:hover:before {
+  content: "😆";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+.rating10:hover:before {
+  content: "🤗";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+}
+span.rating1{
+  margin-right: 40px;
+}
+span.rating2{
+  margin-right: 40px;
+}
+span.rating3{
+  margin-right: 40px;
+}
+span.rating4{
+  margin-right: 40px;
+}
+span.rating5{
+  margin-right: 40px;
+}
+span.rating6{
+  margin-right: 40px;
+}
+span.rating7{
+  margin-right: 40px;
+}
+span.rating8{
+  margin-right: 40px;
+}
+
+.emoji-rating {
+	font-size: 35px;
+	height: 110px;
+  line-height: 90px;
+  cursor: pointer;
+}
+/* .emoji-rating1:hover:before {
+  content: "😡";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+} */
+.emoji-rating1.activeEmoji:before {
+   content: "😡";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+}
+
+.emoji-rating1.activeEmoji:after {
+  content: "Severe";
+  position: absolute;
+  font-size: 16px;
+  left: -18px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.emoji-rating2.activeEmoji:before {
+   content: "😣";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+}
+
+.emoji-rating2.activeEmoji:after {
+  content: "Moderate";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.emoji-rating5.activeEmoji:before {
+   content: "😐";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.emoji-rating5.activeEmoji:after {
+  content: "Mild";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+.emoji-rating7.activeEmoji:before {
+   content: "😊";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+.emoji-rating7.activeEmoji:after {
+  content: "Good";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+
+.emoji-rating10.activeEmoji:before {
+   content: "🤗";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.emoji-rating10.activeEmoji:after {
+  content: "Great";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.custom-btn.activeEmoji {
+  position: relative;
+}
+
+span.emoji-rating1.custom-btn{
+  margin-right: 80px;
+}
+
+span.emoji-rating2.custom-btn{
+  margin-right: 80px;
+}
+
+span.emoji-rating4.custom-btn{
+  margin-right: 80px;
+}
+
+span.emoji-rating5.custom-btn{
+  margin-right: 80px;
+}
+
+span.emoji-rating6.custom-btn{
+  margin-right: 80px;
+}
+span.emoji-rating7.custom-btn{
+  margin-right: 80px;
+}
+span.emoji-rating8.custom-btn{
+  margin-right: 80px;
+}
+span.emoji-rating9.custom-btn{
+  margin-right: 80px;
+}
+
+
+/* Pain After Css */
+
+.pain-after-rating {
+	font-size: 35px;
+	height: 110px;
+  line-height: 90px;
+  cursor: pointer;
+}
+/* .pain-after-rating1:hover:before {
+  content: "😡";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+} */
+.pain-after-rating1.pain-after-activeEmoji:before {
+   content: "😡";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+}
+
+.pain-after-rating1.pain-after-activeEmoji:after {
+  content: "Severe";
+  position: absolute;
+  font-size: 16px;
+  left: -18px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.pain-after-rating2.pain-after-activeEmoji:before {
+   content: "😣";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+}
+
+.pain-after-rating2.pain-after-activeEmoji:after {
+  content: "Moderate";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+
+.pain-after-rating5.pain-after-activeEmoji:before {
+   content: "😐";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.pain-after-rating5.pain-after-activeEmoji:after {
+  content: "Mild";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.pain-after-rating7.pain-after-activeEmoji:before {
+   content: "😊";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+.pain-after-rating7.pain-after-activeEmoji:after {
+  content: "Good";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.pain-after-rating10.pain-after-activeEmoji:before {
+   content: "🤗";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.pain-after-rating10.pain-after-activeEmoji:after {
+  content: "Great";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+.pain-after-activeEmoji {
+  position: relative;
+}
+  span.pain-after-rating1.custom-btn{
+    margin-right: 80px;
+  }
+
+span.pain-after-rating2.custom-btn{
+  margin-right: 80px;
+}
+
+span.pain-after-rating5.custom-btn{
+  margin-right: 80px;
+}
+
+span.pain-after-rating6.custom-btn{
+  margin-right: 80px;
+}
+span.pain-after-rating7.custom-btn{
+  margin-right: 80px;
+}
+span.pain-after-rating8.custom-btn{
+  margin-right: 80px;
+}
+span.pain-after-rating9.custom-btn{
+  margin-right: 80px;
+}
+  /* pain css end */
+
+/* mood before start Css */
+
+.mood-before-rating {
+	font-size: 35px;
+	height: 110px;
+  line-height: 90px;
+  cursor: pointer;
+}
+/* .mood-before-rating1:hover:before {
+  content: "😡";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+} */
+.mood-before-rating1.mood-before-activeEmoji:before {
+   content: "😡";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+}
+
+.mood-before-rating1.mood-before-activeEmoji:after {
+  content: "Severe";
+  position: absolute;
+  font-size: 16px;
+  left: -18px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-before-rating2.mood-before-activeEmoji:before {
+   content: "😣";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+}
+
+.mood-before-rating2.mood-before-activeEmoji:after {
+  content: "Moderate";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-before-rating5.mood-before-activeEmoji:before {
+   content: "😐";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.mood-before-rating5.mood-before-activeEmoji:after {
+  content: "Mild";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-before-rating7.mood-before-activeEmoji:before {
+   content: "😊";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+.mood-before-rating7.mood-before-activeEmoji:after {
+  content: "Good";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-before-rating10.mood-before-activeEmoji:before {
+   content: "🤗";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.mood-before-rating10.mood-before-activeEmoji:after {
+  content: "Great";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+.mood-before-activeEmoji{
+  position: relative;
+}
+span.mood-before-rating1.custom-btn{
+  margin-right: 80px;
+}
+
+span.mood-before-rating2.custom-btn{
+  margin-right: 80px;
+}
+
+span.mood-before-rating5.custom-btn{
+  margin-right: 80px;
+}
+
+span.mood-before-rating6.custom-btn{
+  margin-right: 80px;
+}
+span.mood-before-rating7.custom-btn{
+  margin-right: 80px;
+}
+span.mood-before-rating8.custom-btn{
+  margin-right: 80px;
+}
+span.mood-before-rating9.custom-btn{
+  margin-right: 80px;
+}
+  /* mood before css end */
+
+  
+/* Mood After Css */
+
+.mood-after-rating {
+	font-size: 35px;
+	height: 110px;
+  line-height: 90px;
+  cursor: pointer;
+}
+/* .mood-after-rating1:hover:before {
+  content: "😡";
+  position: absolute;
+  font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+  -webkit-transform: scale(1.2);
+  cursor: pointer;
+
+
+} */
+.mood-after-rating1.mood-after-activeEmoji:before {
+   content: "😡";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -25px;
+}
+
+.mood-after-rating1.mood-after-activeEmoji:after {
+  content: "Severe";
+  position: absolute;
+  font-size: 16px;
+  left: -18px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-after-activeEmoji {
+  position: relative;
+}
+.mood-after-rating2.mood-after-activeEmoji:before {
+   content: "😣";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+}
+
+.mood-after-rating2.mood-after-activeEmoji:after {
+  content: "Moderate";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-after-rating5.mood-after-activeEmoji:before {
+   content: "😐";
+   position: absolute;
+   font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.mood-after-rating5.mood-after-activeEmoji:after {
+  content: "Mild";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-after-rating7.mood-after-activeEmoji:before {
+   content: "😊";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+.mood-after-rating7.mood-after-activeEmoji:after {
+  content: "Good";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+
+.mood-after-rating10.mood-after-activeEmoji:before {
+   content: "🤗";
+   position: absolute;
+    font-size: 60px;
+  -webkit-transform: scale(1.2);
+  margin-left: -16px;
+
+}
+
+.mood-after-rating10.mood-after-activeEmoji:after {
+  content: "Great";
+  position: absolute;
+  font-size: 16px;
+  left: -8px;
+  top: 25px;
+  color: #000;
+  width: 70px;
+}
+span.mood-after-rating1.custom-btn{
+  margin-right: 80px;
+}
+
+span.mood-after-rating2.custom-btn{
+  margin-right: 80px;
+}
+
+
+span.mood-after-rating5.custom-btn{
+  margin-right: 80px;
+}
+
+span.mood-after-rating7.custom-btn{
+  margin-right: 80px;
+}
+
+  /* Mood after css end */
