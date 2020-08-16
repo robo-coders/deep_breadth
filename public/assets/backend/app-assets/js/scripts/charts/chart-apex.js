@@ -126,6 +126,7 @@ lineAreaChart.render();
     success: function(response) {
       console.log('This is Last chart');
       console.log(response['before']);
+      console.log(response['after']);
 
         // for (i = 0; i < response.length; i++) {
         //   text += response[i] + "<br>";

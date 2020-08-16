@@ -30,29 +30,30 @@
                      </div>
                      <div class="card-content">
                         <div class="card-body card-dashboard">
-                           
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="card-header">
+                                    <h4 class="card-title">Comments/ Feedback/ Suggestions:</h4>
+                                       <div class="kt-separator kt-separator--dashed">
+                                          <div class="btn-group btn-group" role="group" aria-label="...">
+                                             <button type="button" class="btn btn-dark comment-value" value="Holly smokes, that was the best massage I ever had!">Holy Smokes</button>
+                                             <button type="button" class="btn btn-dark comment-value" value="My body feels great, thanks.">Wow</button>
+                                             <button type="button" class="btn btn-dark comment-value" value="Wow, we should do this more often.">Great</button>
+                                             <button type="button" class="btn btn-dark comment-value" value="I wish my session were longer.">Just Ok</button>
+                                          </div>
+                                       </div>
+                                 </div>
+                              </div>
+                           </div>
                            <div class="row">
                               <div class="col-12">
                                   <div class="card">
-                                      <div class="card-header">
-                                          <h4 class="card-title">Comments/ Feedback/ Suggestions:</h4>
-                                          <div class="col-md-4">
-                                             <div class="kt-separator kt-separator--dashed">
-                                                <div class="btn-group btn-group" role="group" aria-label="...">
-                                                   <button type="button" class="btn btn-dark comment-value" value="Holly smokes, that was the best massage I ever had!">name</button>
-                                                   <button type="button" class="btn btn-dark comment-value" value="My body feels great, thanks.">name</button>
-                                                   <button type="button" class="btn btn-dark comment-value" value="Wow, we should do this more often.">name</button>
-                                                   <button type="button" class="btn btn-dark comment-value" value="I wish my session were longer.">name</button>
-                                                </div>
-                                             </div>
-														</div>   
-                                      </div>
                                       <div class="card-content">
                                           <div class="card-body">
                                               <div class="row">
                                                   <div class="col-12">
                                                       <fieldset class="form-label-group">
-                                                          <textarea class="form-control" id="textarea" rows="3" 
+                                                          <textarea class="form-control" id="textarea" name="comments" rows="3" 
                                                           value="" placeholder="Dearest Manager, I am penning you this letter today – whilst adorning a tophat – to inform you that my experience was truly…"></textarea>
                                                           <label for="label-textarea">Your Comments</label>
                                                           <input type="text" name="department_name" id="department_name" value="{{$department}}" hidden/>
@@ -247,6 +248,7 @@ function saveReview() {
       url: "/review/save",
       data: {
          department_name : window.department_nameValue,
+         comments : '1',
          painStressLevelBefore : window.painStressLevelBeforeValue,
          painStressLevelAfter  : window.painStressLevelAfterValue,
          moodMoraleLevelBefore : window.moodMoraleLevelBeforeValue,
@@ -254,7 +256,7 @@ function saveReview() {
          continuousWellness    : window.continuousWellnessValue,
       },
       success: function (response) {
-         // return console.log(response); 
+         return console.log(response); 
          Swal.fire(
             'Congrats!',
             'Your review has been submitted!',

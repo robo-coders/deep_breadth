@@ -22,6 +22,7 @@ Route::post('/change/password','adminController@changePassword')->name('change_p
 
 //Admin
 route::get('/admin/dashboard','HomeController@admin')->name('admin_dashboard');
+route::get('/admin/analytic/dashboard','HomeController@admin_analytic_dashboard')->name('admin_analytic_dashboard');
 route::get('/admin/create/user','HomeController@admin_index_by_admin')->name('admin_index_by_admin');
 route::post('/admin/create/user','adminController@create_admin')->name('admin_created_by_admin');
 route::get('/edit/admin/{id}','HomeController@edit_admin')->name('edit_admin_profile');

@@ -97,7 +97,7 @@
                                        <div class="form-group row">
                                           <div class="col-md-12">
                                              <div class="position-relative has-icon-left">
-                                                <input type="text" id="fname-icon" class="form-control" name="company_location" placeholder="Location">
+                                                <input type="text" id="fname-icon" class="form-control" name="company_location" value="{{ old('company_location') }}" required placeholder="Location">
                                                 <div class="form-control-position">
                                                    <i class="feather icon-map-pin
                                                       "></i>

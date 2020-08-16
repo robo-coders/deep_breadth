@@ -267,7 +267,7 @@
                         <ul class="dropdown-menu">
                             <li class="active" data-menu=""><a class="dropdown-item" href="{{ route('admin_dashboard') }}" data-toggle="dropdown" data-i18n="eCommerce"><i class="feather icon-airplay"></i>Simple</a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item" href="#" data-toggle="dropdown" data-i18n="Analytics"><i class="feather icon-activity"></i>Analytics</a>
+                            <li data-menu=""><a class="dropdown-item" href="{{ route('admin_analytic_dashboard') }}" data-toggle="dropdown" data-i18n="Analytics"><i class="feather icon-activity"></i>Analytics</a>
                             </li>
                         </ul>
                     </li>

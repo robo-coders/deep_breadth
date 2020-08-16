@@ -36,11 +36,13 @@ class companyGraphController extends Controller
     {
         $graph = survey_data::all();
         $count = survey_data::count();
+
         $sum = survey_data::sum('moodMoraleLevelBefore');
         $before = $sum / $count;
+
         $sumAfter = survey_data::sum('moodMoraleLevelAfter');
         $after = $sumAfter / $count;
-
+        
         return ['before' => $before, 'after' => $after];
     }
 }

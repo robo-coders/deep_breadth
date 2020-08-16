@@ -34,6 +34,12 @@ class HomeController extends Controller
         $views = user::has('users_info')->with('users_info')->get();
         return view('admin.dashboard',compact('views'));
     }
+    public function admin_analytic_dashboard()
+    {
+        $views = user::has('users_info')->with('users_info')->get();
+        return view('admin.analytic_dashboard',compact('views'));
+  
+    }
     public function edit_admin($id){
         $view = user::find($id);
         return view('admin.edit_profile',compact('view'));
