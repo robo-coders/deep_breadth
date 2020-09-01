@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\user;
 use App\users_info;
 use App\survey_data;
+use Auth;
 use App\Http\Resources\UserResponse;
 
 class HomeController extends Controller
@@ -59,7 +60,9 @@ class HomeController extends Controller
     }
     public function company()
     {
-        $count = survey_data::count();
+        $count = survey_data::where('user_id',Auth::user()->id)
+        ->get()
+        ->count();
         return view('company.dashboard',compact('count'));
     }
     public function company_edit_by_admin($id){

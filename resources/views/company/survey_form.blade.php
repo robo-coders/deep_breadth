@@ -53,9 +53,10 @@
                                               <div class="row">
                                                   <div class="col-12">
                                                       <fieldset class="form-label-group">
-                                                          <textarea class="form-control" id="textarea" name="comments" rows="3" 
-                                                          value="" placeholder="Dearest Manager, I am penning you this letter today – whilst adorning a tophat – to inform you that my experience was truly…"></textarea>
+                                                          <textarea class="form-control" id="commentsValue" name="comments" rows="3" 
+                                                          value="" placeholder="Dearest Manager, I am penning you this letter today – whilst adorning a tophat – to inform you that my experience was truly…" onkeyup="updateCommentsValue()"></textarea>
                                                           <label for="label-textarea">Your Comments</label>
+                                                          
                                                           <input type="text" name="department_name" id="department_name" value="{{$department}}" hidden/>
                                                       </fieldset>
                                                   </div>
@@ -205,21 +206,17 @@
    </div>
 </div>
 <script>
-//Get value from button for Comments Start
-$(".comment-value").click(function() {
-   // console.log($(this).val());
-   $("#textarea").val($(this ).val());
-});
-//Get value from button for Comments End
-var department_name = "";
+
+var department_nameValue       = "";
 var painStressLevelBeforeValue = "";
 var painStressLevelAfterValue  = "";
 var moodMoraleLevelBeforeValue = "";
 var moodMoraleLevelAfterValue  = "";
 var continuousWellnessValue    = "";
+var commentsValue              = "";
 
-function department_name(value) {
-   window.department_nameValue = value;
+function department_name() {
+   window.department_nameValue = $("#department_name").val();
 }
 
 function painStressLevelBefore(value) {
@@ -242,27 +239,29 @@ function continuousWellness(value) {
    window.continuousWellnessValue = value;
 }
 
+function updateCommentsValue() {
+   window.commentsValue = $("#commentsValue").val();
+}
+
 function saveReview() {
    $.ajax({
       type: "GET",
       url: "/review/save",
       data: {
-         department_name : window.department_nameValue,
-         comments : '1',
+         department_name       : window.department_nameValue,
+         comments              : window.commentsValue,
          painStressLevelBefore : window.painStressLevelBeforeValue,
          painStressLevelAfter  : window.painStressLevelAfterValue,
          moodMoraleLevelBefore : window.moodMoraleLevelBeforeValue,
          moodMoraleLevelAfter  : window.moodMoraleLevelAfterValue,
          continuousWellness    : window.continuousWellnessValue,
       },
-      success: function (response) {
-         return console.log(response); 
+      success: function (response) { 
          Swal.fire(
             'Congrats!',
             'Your review has been submitted!',
             'success',
-            )
-            .then(function(){
+            ).then(function(){
                location.reload();
             });
       },
@@ -279,10 +278,11 @@ function saveReview() {
 
 
 $(document).ready(function (){
-   
-   
-
-   
+$(".comment-value").click(function() {
+   $("#commentsValue").val($(this ).val());
+   updateCommentsValue();
+});  
+department_name();
 
 });
    

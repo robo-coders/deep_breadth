@@ -23,10 +23,22 @@
             <div class="row">
                 <div class="col-md-12">
                     @if (session('error'))
-                    <div class="alert alert-danger" role="alert">
-                        <h4><i class="fa fa-check"></i>&nbsp;Alert !</h4>
-                        <p class="alert-message">{{ session('error') }}</p>
-                    </div>
+                        <div class="alert alert-danger" role="alert">
+                            <h4><i class="fa fa-check"></i>&nbsp;Alert !</h4>
+                            <p class="alert-message">{{ session('error') }}</p>
+                        </div>
+                    @endif
+                </div>
+                <div class="col-md-12">
+                    @if (count($errors)>0)
+                        <div class="alert alert-danger" role="alert">
+                            <h4><i class="fa fa-check"></i>&nbsp;Alert !</h4>
+                            @foreach ($errors->all() as $error)
+                                <p class="alert-message">
+                                    {{$error}}
+                                </p>
+                            @endforeach
+                        </div>
                     @endif
                 </div>
                 <div class="col-md-12">

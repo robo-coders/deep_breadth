@@ -125,8 +125,8 @@ lineAreaChart.render();
     url:"/mood/morale/",
     success: function(response) {
       console.log('This is Last chart');
-      console.log(response['before']);
-      console.log(response['after']);
+      // console.log(response['before']);
+      console.log(response);
 
         // for (i = 0; i < response.length; i++) {
         //   text += response[i] + "<br>";
@@ -145,23 +145,17 @@ lineAreaChart.render();
     },
     series: [{
       name: 'Before',
-      data: [response['before'], 40, 28, 51, 42, 109, 100]
+      data: response.before //array
     }, {
       name: 'After',
-      data: [response['after'], 32, 45, 32, 34, 52, 41]
+      data: response.after //array
     }],
     legend: {
       offsetY: -10
     },
     xaxis: {
-      type: 'datetime',
-      categories: ["2019-09-18T00:00:00", "2019-09-18T01:00:00", "2019-09-18T02:00:00",
-        "2019-09-18T03:00:00", "2019-09-18T04:00:00", "2019-09-18T05:00:00",
-        "2019-09-18T06:00:00"
-      ],
-    },
-    yaxis: {
-      opposite: yaxis_opposite
+      type: 'text',
+      categories: response.dates, //array
     },
     tooltip: {
       x: {

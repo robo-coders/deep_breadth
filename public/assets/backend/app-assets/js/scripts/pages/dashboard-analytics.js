@@ -61,7 +61,7 @@ $(window).on("load", function () {
       }
     },
     series: [{
-      name: 'Subscribers',
+      name: 'Users',
       data: [28, 40, 36, 52, 38, 60, 55]
     }],
 

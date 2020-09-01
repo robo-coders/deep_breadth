@@ -37,23 +37,23 @@ class adminController extends Controller
     }
 
     public function changePassword(Request $request){
-       // dd("1.");
+        $vali = $request->validate([
+            'old_password' => 'required',
+            'password'     => 'required|min:6|confirmed',
+            // 'password_confirmation' => 'required|confirmed',
+        ]);
+
         if(!(Hash::check($request->get('old_password'), Auth::user()->password))){
             return back()->with('error','Your current password does not match');
         }
-        //dd("2.");
-        if(strcmp($request->get('old_password'),$request->get('password'))== 0){
+        elseif(strcmp($request->get('old_password'),$request->get('password'))== 0){
             return back()->with('error','Your current & new password can not be the same');
         }
-    //    $vali = $request->validate([
-    //         'old_password' => 'required',
-    //         'password'     => 'required|min:6',
-    //         'password_confirmation' => 'required|confirmed'
-    //     ]);
-
-        $user = Auth::user();
-        $user->password = Hash::make($request->get('password'));
-        $user->save();
+        else{
+            $user = Auth::user();
+            $user->password = Hash::make($request->get('password'));
+            $user->save();
+        }
         return back()->with('success','Password changed successfully');
 
     }
@@ -235,7 +235,7 @@ class adminController extends Controller
         $user_id = auth::user()->id;
         $store->user_id = $user_id;
         $store->department_name = $request->department_name;
-        $store->comments = "test";
+        $store->comments = $request->comments;
         $store->painStressLevelBefore = $request->painStressLevelBefore;
         $store->painStressLevelAfter = $request->painStressLevelAfter;
         $store->moodMoraleLevelBefore = $request->moodMoraleLevelBefore;
