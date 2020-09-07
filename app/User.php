@@ -36,7 +36,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     public function users_info(){
         return $this->hasMany('App\users_info');
+    }
+
+    public function survey_data()
+    {
+        return $this->hasMany(survey_data::class, "user_id");
+    }
+    public function graph_setting()
+    {
+        return $this->hasMany(graph_setting::class, "user_id");
     }
 }

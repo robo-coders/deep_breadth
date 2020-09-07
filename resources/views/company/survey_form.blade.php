@@ -1,4 +1,10 @@
 @extends('backend.company')
+@section('css')
+   <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/survey.css')}}">
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/survey2.css')}}">
+
+@endsection
 @section('body')
 <div class="app-content content">
    <div class="content-wrapper">
@@ -245,8 +251,11 @@ function updateCommentsValue() {
 
 function saveReview() {
    $.ajax({
-      type: "GET",
+      type: "post",
       url: "/review/save",
+      headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       data: {
          department_name       : window.department_nameValue,
          comments              : window.commentsValue,
@@ -256,7 +265,17 @@ function saveReview() {
          moodMoraleLevelAfter  : window.moodMoraleLevelAfterValue,
          continuousWellness    : window.continuousWellnessValue,
       },
-      success: function (response) { 
+      success: function (data, status, response) { 
+         console.log(response);
+         if( response.status === 219 ) {
+            var responseErrors = $.parseJSON(response.responseText);
+               Swal.fire(
+               'Warning!',
+               responseErrors.errors,
+               'error',
+               );
+               return;
+            };
          Swal.fire(
             'Congrats!',
             'Your review has been submitted!',
@@ -268,7 +287,7 @@ function saveReview() {
       error: function(error){
          Swal.fire(
             'Warning!',
-            'Please fill out the form!',
+            'something went wrong!',
             'error',
             )
       }
@@ -299,7 +318,6 @@ for (var i = 0; i < btns.length; i++) {
 }
 $("span").click(function(){
    $(this).addClass('activeEmoji');
-   console.log(this);
    });
 //Pain
 

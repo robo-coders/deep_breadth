@@ -17,7 +17,7 @@
 
     {{-- jquery import start --}}
     <!--<script src="jquery-3.4.1.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}
     {{-- Jquery import End --}}
     
     <!-- BEGIN: Vendor CSS-->
@@ -29,14 +29,13 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap-extended.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/components.css')}}">
-
+    @yield('css')
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('/assets/backend/app-assets/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/style.css')}}">
     <!-- END: Custom CSS-->
    
 </head>
@@ -51,8 +50,8 @@
         <div class="navbar-header d-xl-block d-none">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item"><a class="navbar-brand" href="">
-                        <div class="logo"> <img src="{{asset('assets/backend/app-assets/images/logo/')}}" 
-                            alt=""> </div>
+                        {{-- <div class="logo"> <img src="{{asset('assets/backend/app-assets/images/logo/')}}" 
+                            alt=""> </div> --}}
                     </a></li>
             </ul>
         </div>
@@ -80,7 +79,7 @@
                         @endif
                         </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{ route('edit_admin_profile',['id'=>auth()->user()->id]) }}"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a>
+                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{ route('edit_admin_profile',['id'=>auth()->user()->id]) }}"><i class="feather icon-user"></i> Edit Profile</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();"><i class="feather icon-power"></i> Logout</a>
                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -138,20 +137,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i><span data-i18n="Charts &amp; Maps">Charts &amp; Graphs</span></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Charts"><i class="feather icon-pie-chart"></i>Charts</a>
-                                <ul class="dropdown-menu">
-                                    <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Apex"><i class="feather icon-circle"></i>abc</a>
-                                    </li>
-                                    <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Chartjs"><i class="feather icon-circle"></i>abc</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Google Maps"><i class="feather icon-map"></i>Graphs</a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -181,27 +166,15 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('assets/backend/app-assets/vendors/js/ui/jquery.sticky.js')}}"></script>
     <!-- END: Page Vendor JS-->
-{{-- Data Tables by Develooper --}}
-    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
-    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/backend/app-assets/js/scripts/datatables/datatable.js')}}"></script>
 
-{{-- end --}}
+@yield('scripts')
+
     <!-- BEGIN: Theme JS-->
     <script src="{{asset('assets/backend/app-assets/js/core/app-menu.js')}}"></script>
     <script src="{{asset('assets/backend/app-assets/js/core/app.js')}}"></script>
     <script src="{{asset('assets/backend/app-assets/js/scripts/components.js')}}"></script>
     <!-- END: Theme JS-->
     <script src="{{asset('assets/backend/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
-    {{-- <script src="{{asset('assets/backend/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script> --}}
-
-    <!-- BEGIN: Page JS-->
-    {{-- <script src="{{asset('assets/backend/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script> --}}
-    <!-- END: Page JS-->
     <script>
            function deleteData(id){
                 var csrf_token=$('meta[name="csrf-token"]').attr('content');

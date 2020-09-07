@@ -10,13 +10,13 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Deep Breadth - App</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" href="">
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <!-- BEGIN: Vendor CSS-->
 
      {{-- survey css --}}
@@ -28,6 +28,8 @@
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap-extended.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/colors/palette-gradient.css')}}">
@@ -36,9 +38,8 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/dashboard-analytics.css')}}">
-   
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/survey.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/survey2.css')}}">
+    
+   @yield('css')
     
     <!-- END: Page CSS-->
 
@@ -83,7 +84,10 @@
                         @endif
                         </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{ route('edit_company_profile',['id'=>auth()->user()->id]) }}"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="{{ route('edit_company_profile',['id'=>auth()->user()->id]) }}"><i class="feather icon-user"></i> Edit Profile
+                                </a>
+                                <a class="dropdown-item" href="{{ route('companySettings',['id'=>auth()->user()->id]) }}"><i class="feather icon-settings"></i>Settings</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();"><i class="feather icon-power"></i> Logout</a>
                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -124,17 +128,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i><span data-i18n="Charts &amp; Maps">Charts &amp; Graphs</span></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Charts"><i class="feather icon-pie-chart"></i>Charts</a>
-                                <ul class="dropdown-menu">
-                                    <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Apex"><i class="feather icon-circle"></i>abc</a>
-                                    </li>
-                                    <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Chartjs"><i class="feather icon-circle"></i>abc</a>
-                                    </li>
-                                </ul>
+                    <li class="dropdown nav-item" style="margin-left:1050px;" data-menu="dropdown">
+                        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i><span data-i18n="Pages">Last 7 days</span>
+                        </a>
+
+                        <ul class="dropdown-menu" id="graphValue">
+                            <li class="dropdown dropdown-submenu"><a class="dropdown-item updateGraph" data-graphValue="7"><i class="feather icon-circle"></i>Last Month</a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Google Maps"><i class="feather icon-map"></i>Graphs</a>
+                            <li class="dropdown dropdown-submenu"><a class="dropdown-item"><i class="feather icon-circle"></i>Last 28 Days</a>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a class="dropdown-item"><i class="feather icon-circle"></i>Last Year</a>
                             </li>
                         </ul>
                     </li>
@@ -166,21 +169,17 @@
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('/assets/backend/app-assets/vendors/js/ui/jquery.sticky.js')}}"></script>
-    <script src="{{asset('/assets/backend/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
     <script src="{{asset('/assets/backend/app-assets/js/core/app-menu.js')}}"></script>
     <script src="{{asset('/assets/backend/app-assets/js/core/app.js')}}"></script>
-    {{-- <script src="{{asset('/assets/backend/app-assets/js/scripts/components.js')}}"></script> --}}
     <script src="{{asset('/assets/backend/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
 
     <!-- BEGIN: Page JS-->
     <script src="{{asset('/assets/backend/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <!-- END: Page JS-->
-
-    {{-- Chart Graph --}}
-    <script src="{{asset('/assets/backend/app-assets/js/scripts/charts/chart-apex.js')}}"></script>
+    
 @yield('scripts')   
 </body>
 <!-- END: Body-->

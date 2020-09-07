@@ -1,4 +1,7 @@
 @extends('backend.company')
+@section('css')
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/card-analytics.css')}}"> --}}
+@endsection
 @section('body')
 <div class="app-content content">
     <div class="row">
@@ -38,7 +41,7 @@
             <div class="content-body">
                 <section id="dashboard-analytics">
                     <div class="row">
-                        <div class="col-lg-6 col-md-12 col-sm-12">
+                        {{-- <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="card bg-analytics text-white">
                                 <div class="card-content">
                                     <div class="card-body text-center">
@@ -58,23 +61,32 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
+                        </div> --}}
+                        <div class="col-lg-6 col-md-12">
                             <div class="card">
-                                <div class="card-header d-flex flex-column align-items-start pb-0">
-                                    <div class="avatar bg-rgba-primary p-50 m-0">
-                                        <div class="avatar-content">
-                                            <i class="feather icon-users text-primary font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{$count}}</h2>
-                                    <p class="mb-0">Submitted by</p>
+                                <div class="card-header">
+                                    <h4 class="card-title">Survey Chart</h4>
                                 </div>
                                 <div class="card-content">
-                                    <div id="subscribe-gain-chart"></div>
+                                    <div class="card-body">
+                                        <div id="line-chart"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Continuous wellness (Under Development )</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div id="donut-chart" class="mx-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </section>
                     <div class="row">
                         <div class="col-md-6 col-12">
@@ -82,14 +94,7 @@
                                 <div class="card-header d-flex justify-content-between pb-0">
                                     <h4 class="card-title">Pain Stress Level Before</h4>
                                     <div class="dropdown chart-dropdown">
-                                        {{-- <button class="btn btn-sm border-0 dropdown-toggle p-0" type="button" id="dropdownItem4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Last 7 Days
-                                        </button> --}}
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownItem4">
-                                            <a class="dropdown-item" href="#">Last 28 Days</a>
-                                            <a class="dropdown-item" href="#">Last Month</a>
-                                            <a class="dropdown-item" href="#">Last Year</a>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="card-content">
@@ -126,14 +131,7 @@
                                 <div class="card-header d-flex justify-content-between pb-0">
                                     <h4 class="card-title">Pain Stress Level After</h4>
                                     <div class="dropdown chart-dropdown">
-                                        {{-- <button class="btn btn-sm border-0 dropdown-toggle p-0" type="button" id="dropdownItem4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Last 7 Days
-                                        </button> --}}
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownItem4">
-                                            <a class="dropdown-item" href="#">Last 28 Days</a>
-                                            <a class="dropdown-item" href="#">Last Month</a>
-                                            <a class="dropdown-item" href="#">Last Year</a>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="card-content">
@@ -365,4 +363,37 @@
         </div>
     </div>
     
+@endsection
+@section('scripts')
+    {{-- Pain Stress leve start --}}
+    <script src="{{asset('/assets/backend/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    {{-- Pain Stress leve ends --}}
+
+     {{-- Mood / Morale chart start --}}
+     <script src="{{asset('/assets/backend/app-assets/js/scripts/charts/chart-apex.js')}}"></script>
+     {{-- Mood / Morale chart ends --}}
+<script>
+$(document).ready(function(){
+    $(document).on('click','.updateGraph',function(){
+        var graphValue = $(this).data("graphValue");
+        alert(graphValue);
+        $.ajax({
+        type:'get',
+        url:'/update/graph',
+        success:function(response){
+             console.log(response);
+
+            Swal.fire(
+            'Congrats!',
+            'Graphs has been updated!',
+            'success',
+            )
+            
+            }
+        });
+    });
+});
+</script>
+
+
 @endsection

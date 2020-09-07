@@ -1,4 +1,8 @@
 @extends('backend.admin')
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/colors/palette-gradient.css')}}">
+@endsection    
 @section('body')
 <div class="app-content content">
    <div class="content-wrapper">
@@ -195,71 +199,90 @@
             </div>
          </section>
       </div>
-      <!-- Table rows start -->
-      <div class="row" id="table-hover-row">
-         <div class="col-12">
-            <div class="card">
-               <div class="card-header">
-                  <h4 class="card-title">List of Companies</h4>
-               </div>
-               <div class="card-content">
-                  <div class="table-responsive">
-                     <table class="table table-hover mb-0">
-                        <thead>
-                           <tr>
-                              <th>ID</th>
-                              <th>Avatar</th>
-                              <th>Company Name</th>
-                              <th>Location</th>
-                              <th>Coordinator</th>
-                              <th>Email</th>
-                              <th>Phone</th>
-                              <th>User Role</th>
-                              <th>Created at</th>
-                              <th> </th>
-                           </tr>
-                        </thead>
-                        <?php $serial = 1; ?>
-                        @foreach ($views as $view)
-                        <tbody>
-                           <tr>
-                              <th scope="row">{{$serial}}</th>
-                              @if (isset($view->avatar))
-                              <td> <img src="{{url($view->avatar)}}" alt="{{$view->name}}" class="img-cirlcle" width="60px" height="60px"></td>
-                              @else
-                              <td><img src="{{url('assets/backend/app-assets/images/extras/dummy.png')}}" alt="{{$view->name}}" class="img-cirlcle" width="60px" height="60px"></td>
-                              @endif 
-                              @foreach ($view->users_info as $data)
-                              <td> {{$data->company_name}} </td>
-                              <td> {{$data->company_location}} </td>
-                              @endforeach
-                              <td>{{$view->name}} {{$view->last_name}}</td>
-                              <td>{{$view->email}}</td>
-                              <td>{{$view->mobile}}</td>
-                              <td>@if ($view->role == 1) {{'Admin'}} @elseif ($view->role == 2) {{'Company'}} @endif </td>
-                              <td>{{$view->created_at->toFormattedDateString()}}</td>
-                              <td>
-                                 <div class="dropdown">
-                                    <button class="btn btn-danger dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Actions
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <a class="dropdown-item" href="{{ route('company_edit_by_admin',['id'=>$view->id]) }}">Edit</a>
-                                       <a onclick="deleteDataCompany({{$view->id}})" class="dropdown-item">Delete</a>
-                                    </div>
-                                 </div>
-                              </td>
-                           </tr>
-                        </tbody>
-                        <?php $serial++ ?>
-                        @endforeach
-                     </table>
+
+      <div class="content-body">
+         <!-- Table section start -->
+         <section id="basic-datatable">
+            <div class="row">
+               <div class="col-12">
+                  <div class="card">
+                     <div class="card-header">
+                        <h4 class="card-title">List of Companies</h4>
+                     </div>
+                     <div class="card-content">
+                        <div class="card-body card-dashboard">
+                            <div class="table-responsive">
+                              <table class="table zero-configuration table-hover mb-0">
+                                 <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>Avatar</th>
+                                       <th>Company Name</th>
+                                       <th>Location</th>
+                                       <th>Coordinator</th>
+                                       <th>Email</th>
+                                       <th>Phone</th>
+                                       <th>User Role</th>
+                                       <th>Created at</th>
+                                       <th> </th>
+                                    </tr>
+                                 </thead>
+                                 <?php $serial = 1; ?>
+                                 @foreach ($views as $view)
+                                 <tbody>
+                                    <tr>
+                                       <th scope="row">{{$serial}}</th>
+                                       @if (isset($view->avatar))
+                                       <td> <img src="{{url($view->avatar)}}" alt="{{$view->name}}" class="img-cirlcle" width="60px" height="60px"></td>
+                                       @else
+                                       <td><img src="{{url('assets/backend/app-assets/images/extras/dummy.png')}}" alt="{{$view->name}}" class="img-cirlcle" width="60px" height="60px"></td>
+                                       @endif 
+                                       @foreach ($view->users_info as $data)
+                                       <td> {{$data->company_name}} </td>
+                                       <td> {{$data->company_location}} </td>
+                                       @endforeach
+                                       <td>{{$view->name}} {{$view->last_name}}</td>
+                                       <td>{{$view->email}}</td>
+                                       <td>{{$view->mobile}}</td>
+                                       <td>@if ($view->role == 1) {{'Admin'}} @elseif ($view->role == 2) {{'Company'}} @endif </td>
+                                       <td>{{$view->created_at->toFormattedDateString()}}</td>
+                                       <td>
+                                          <div class="dropdown">
+                                             <button class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                             Actions
+                                             </button>
+                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{ route('company_edit_by_admin',['id'=>$view->id]) }}">Edit</a>
+                                                <a onclick="deleteDataCompany({{$view->id}})" class="dropdown-item">Delete</a>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                                 <?php $serial++ ?>
+                                 @endforeach
+                              </table>
+                            </div>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
+         </section>
+         <!-- Table section ends -->
       </div>
-      <!-- Table rows end -->
+     
+
+
+
+
    </div>
 </div>
+@endsection
+@section('scripts')
+{{-- Data Tables start--}}
+    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/backend/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/backend/app-assets/js/scripts/datatables/datatable.js')}}"></script>
+{{-- Data Tables ends --}}
 @endsection

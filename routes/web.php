@@ -42,11 +42,17 @@ route::post('/survey/form','HomeController@survey_form')->name('survey_form_inde
 route::get('/edit/profile/{id}','HomeController@edit_company_profile')->name('edit_company_profile');
 route::post('/update/profile/{id}','adminController@update_company_profile')->name('update_company_profile');
 route::post('/delete/company/{id}','adminController@delete_company_by_admin')->name('delete_company_by_admin');
-route::get('/review/save','adminController@saveReview')->name('saveReview');
+route::post('/review/save','adminController@saveReview')->name('saveReview');
+route::get('/company/settings/{id}','adminController@companySettings')->name('companySettings');
+
 //Graphs
+route::get('/submit/survey/report','companyGraphController@submitSurveyReport')->name('submitSurveyReport');
+route::get('/wellness','companyGraphController@continuousWellness')->name('continuousWellness');
 route::get('/pain/stress/level/before','companyGraphController@pain_stress_level_before')->name('pain_stress_level_before');
 route::get('/pain/stress/level/after','companyGraphController@pain_stress_level_after')->name('pain_stress_level_after');
 route::get('/mood/morale/','companyGraphController@mood_morale')->name('mood_morale');
+
+route::get('/update/graph','companyGraphController@updateGraph')->name('updateGraph');
 
 
 

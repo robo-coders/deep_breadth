@@ -28,48 +28,55 @@ $(document).ready(function () {
 
   // Line Chart
   // ----------------------------------
+  $.ajax({
+    type:"GET",
+    url:"/submit/survey/report",
+    success: function(response) {
   var lineChartOptions = {
-    chart: {
-      height: 350,
-      type: 'line',
-      zoom: {
-        enabled: false
-      }
-    },
-    colors: themeColors,
-    dataLabels: {
-      enabled: false
-    },
-    stroke: {
-      curve: 'straight'
-    },
-    series: [{
-      name: "Desktops",
-      data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-    }],
-    title: {
-      text: 'Product Trends by Month',
-      align: 'left'
-    },
-    grid: {
-      row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-        opacity: 0.5
+      chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
       },
-    },
-    xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-    },
-    yaxis: {
-      tickAmount: 5,
-      opposite: yaxis_opposite
+      colors: themeColors,
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      series: [{
+        name: "Survey submission",
+        data: response[0],
+      }],
+      title: {
+        text: 'Submission by week',
+        align: 'left'
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+      xaxis: {
+        categories: response[1],
+      },
+      yaxis: {
+        tickAmount: 5,
+        opposite: yaxis_opposite
+      }
     }
-  }
   var lineChart = new ApexCharts(
     document.querySelector("#line-chart"),
     lineChartOptions
   );
   lineChart.render();
+  }
+});
+ 
 // Testing Start
 /*
 var lineAreaOptions = {
@@ -124,13 +131,6 @@ lineAreaChart.render();
     type:"GET",
     url:"/mood/morale/",
     success: function(response) {
-      console.log('This is Last chart');
-      // console.log(response['before']);
-      console.log(response);
-
-        // for (i = 0; i < response.length; i++) {
-        //   text += response[i] + "<br>";
-        // }
   var lineAreaOptions = {
     chart: {
       height: 350,
@@ -874,37 +874,92 @@ lineAreaChart.render();
 
   // Donut Chart
   // -----------------------------
-  var donutChartOptions = {
-    chart: {
-      type: 'donut',
-      height: 350
-    },
-    colors: themeColors,
-    series: [44, 55, 41, 17],
-    legend: {
-      itemMargin: {
-        horizontal: 2
-      },
-    },
-    responsive: [{
-      breakpoint: 480,
-      options: {
+  $.ajax({
+    type:"GET",
+    url:"/wellness",
+    success: function(response) {
+      
+      var options = {
+        series: response.report,
         chart: {
-          width: 350
-        },
-        legend: {
-          position: 'bottom'
+        width: '60%',
+        type: 'donut',
+      },
+      labels: ["4", "1", "3", "2", "5"],
+      theme: {
+        monochrome: {
+          enabled: true
         }
+      },
+      fill: {
+        // type: 'gradient',
+        colors: ['#F44336', '#E91E63', '#9C27B0', '#000000', '#E91E58']
+      },
+      dataLabels: {
+        formatter(val, opts) {
+          const name = opts.w.globals.labels[opts.seriesIndex]
+          return [name, val.toFixed(1) + '%']
+        }
+      },
+      legend: {
+        show: false
       }
-    }]
-  }
-  var donutChart = new ApexCharts(
-    document.querySelector("#donut-chart"),
-    donutChartOptions
-  );
+      };
 
-  donutChart.render();
+      var chart = new ApexCharts(document.querySelector("#donut-chart"), options);
+      chart.render();
 
+
+
+
+
+
+    //   console.log('this si donut');
+    //   console.log(response);
+
+    //   var donutChartOptions = {
+    //     chart: {
+    //       type: 'donut',
+    //       height: 350
+    //     },
+    //     colors: themeColors,
+    //     series: response.report,
+    //     legend: {
+    //       itemMargin: {
+    //         horizontal: 2
+    //       },
+    //     },
+    //     responsive: [{
+    //       breakpoint: 480,
+    //       options: {
+    //         labels: ["4", "1", "3", "2", "5"],
+    //         dataLabels: {
+    //           formatter(val, opts) {
+    //             const name = opts.w.globals.labels[opts.seriesIndex]
+    //             return [name, val.toFixed(1) + '%']
+    //           }
+    //         },
+    //         chart: {
+    //           width: 350
+    //         },
+    //         legend: {
+    //           position: 'bottom'
+    //         }
+    //       }
+    //     }]
+    //   }
+
+
+    //   var donutChart = new ApexCharts(
+    //   document.querySelector("#donut-chart"),
+    //   donutChartOptions
+    // );
+    
+    //   donutChart.render();
+    
+    }
+  });
+  
   // Radial Bar Chart
   // -----------------------------
   var radialBarChartOptions = {

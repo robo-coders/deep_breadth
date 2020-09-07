@@ -12,6 +12,8 @@ use App\users_info;
 use App\survey_data;
 use Session;
 use Hash;
+use Illuminate\Support\Facades\Validator;
+
 class adminController extends Controller
 {
     /**
@@ -211,6 +213,10 @@ class adminController extends Controller
         session()->flash('update_company_profile','Your profile has been UPDATED successfully');
         return redirect('/company/dashboard');
     }
+    public function companySettings($id)
+    {
+        return view('company.settings');
+    }
 
     public function delete_admin_by_admin(Request $request, $id){
         $dell = user::find($id);
@@ -231,6 +237,34 @@ class adminController extends Controller
 
     public function saveReview(Request $request)
     {
+        $validatedData = Validator::make($request->all(), [
+            'comments' => 'required',
+            'painStressLevelBefore' => 'required',
+            'painStressLevelAfter' => 'required',
+            'moodMoraleLevelBefore' => 'required',
+            'moodMoraleLevelAfter' => 'required',
+            'continuousWellness' => 'required',
+
+            
+        ],
+        [
+            'comments.required' => 'Please enter comments!',
+            'painStressLevelBefore.required' => 'Please specify pain stress level before!',
+            'painStressLevelAfter.required' => 'Please specify pain stress level after!',
+            'moodMoraleLevelBefore.required' => 'Please specify mood morale before!',
+            'moodMoraleLevelAfter.required' => 'Please specify mood morale after!',
+            'continuousWellness.required' => 'Please specify continuous wellness!',
+
+        ]);
+
+        if ($validatedData->fails())
+        {
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validatedData->errors()->first()
+            ), 219); 
+        }
+
         $store = new survey_data;
         $user_id = auth::user()->id;
         $store->user_id = $user_id;
