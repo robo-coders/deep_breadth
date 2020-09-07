@@ -87,7 +87,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('edit_company_profile',['id'=>auth()->user()->id]) }}"><i class="feather icon-user"></i> Edit Profile
                                 </a>
-                                <a class="dropdown-item" href="{{ route('companySettings',['id'=>auth()->user()->id]) }}"><i class="feather icon-settings"></i>Settings</a>
+                                {{-- <a class="dropdown-item" href="{{ route('companySettings',['id'=>auth()->user()->id]) }}"><i class="feather icon-settings"></i>Settings</a> --}}
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();"><i class="feather icon-power"></i> Logout</a>
                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -128,7 +128,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item" style="margin-left:1050px;" data-menu="dropdown">
+                    {{-- <li class="dropdown nav-item" style="margin-left:1050px;" data-menu="dropdown">
                         <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i><span data-i18n="Pages">Last 7 days</span>
                         </a>
 
@@ -140,7 +140,7 @@
                             <li class="dropdown dropdown-submenu"><a class="dropdown-item"><i class="feather icon-circle"></i>Last Year</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
