@@ -11,20 +11,30 @@ use Carbon\Carbon;
 class companyGraphController extends Controller
 {
     private $graphDays;
-    
-    public function updateGraph()
+    function index()
+    {
+        return $this->graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
+    }
+    public function updateGraph(Request $request)
     {
         $data = Auth::user()->graph_setting
         ->first();
-        $data->value = '7';
+        $data->value = $request->value;
         $data->save();
+        return $data;
     }
     public function pain_stress_level_before()
     {
+        $graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
+
         $graph = survey_data::all();
 
         $date = Carbon::now();
-        $sevenDaysEarlier = Carbon::now()->subDays(7);
+        $sevenDaysEarlier = Carbon::now()->subDays($graphDays);
 
         $count = survey_data::where('user_id',Auth::user()->id)
         ->whereBetween('created_at', [$sevenDaysEarlier,$date])
@@ -45,9 +55,13 @@ class companyGraphController extends Controller
     }
     public function pain_stress_level_after()
     {
+        $graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
+
         $graph = survey_data::all();
         $date = Carbon::now();
-        $sevenDaysEarlier = Carbon::now()->subDays(7);
+        $sevenDaysEarlier = Carbon::now()->subDays($graphDays);
 
         $count = survey_data::where('user_id',Auth::user()->id)
         ->whereBetween('created_at', [$sevenDaysEarlier,$date])
@@ -77,12 +91,16 @@ class companyGraphController extends Controller
     }
     public function mood_morale()
     {
+        $graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
+
         $before = [];
         $after  = [];
         $dates  = [];
 
         $date = Carbon::now();
-        $sevenDaysEarlier = Carbon::now()->subDays(7);
+        $sevenDaysEarlier = Carbon::now()->subDays($graphDays);
 
         $datas = survey_data::where('user_id',Auth::user()->id)
         ->whereBetween('created_at', [$sevenDaysEarlier,$date])
@@ -98,6 +116,10 @@ class companyGraphController extends Controller
     }
     public function submitSurveyReport()
     {
+        $graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
+
         $response         = [];
         $dayNames         = [];
         $submissionsCount = [];
@@ -118,17 +140,50 @@ class companyGraphController extends Controller
     }
     public function continuousWellness()
     {
-        $report = survey_data::where('user_id',Auth::user()->id)
-        ->pluck('continuousWellness');
+        $graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
 
-        // return ['report' =>$report];
+        $report = [];
 
-        return ['report' => [
-            4,
-            1,
-            3,
-            2,
-            5
-        ]];
+        $stronglyDisagree = Auth::user()->survey_data()
+        ->where('continuousWellness','1')
+        ->pluck('continuousWellness')->sum();
+
+        $disagree = Auth::user()->survey_data()
+        ->where('continuousWellness','2')
+        ->pluck('continuousWellness')->sum();
+
+        $neutral = Auth::user()->survey_data()
+        ->where('continuousWellness','3')
+        ->pluck('continuousWellness')->sum();
+
+        $agree = Auth::user()->survey_data()
+        ->where('continuousWellness','4')
+        ->pluck('continuousWellness')->sum();
+
+        $stronglyAgree = Auth::user()->survey_data()
+        ->where('continuousWellness','5')
+        ->pluck('continuousWellness')->sum();
+
+
+        // return [
+        //         'stronglyDisagree' => $stronglyDisagree, 
+        //         'disagree' => $disagree,
+        //         'neutral' => $neutral,
+        //         'agree' => $agree,
+        //         'stronglyAgree' => $stronglyAgree
+        //     ];
+
+        array_push($report, $stronglyDisagree, $disagree, $neutral, $agree, $stronglyAgree);
+        return $report;
+        
+        // return ['report' => [
+        //     1,
+        //     2,
+        //     3,
+        //     4,
+        //     5
+        // ]];
     }
 }

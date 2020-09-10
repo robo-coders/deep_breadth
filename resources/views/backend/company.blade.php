@@ -15,7 +15,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}
 
     <!-- BEGIN: Vendor CSS-->
 
@@ -27,19 +27,19 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/vendors/css/vendors.min.css')}}">
     <!-- END: Vendor CSS-->
 
-    <!-- BEGIN: Theme CSS-->
+        <!-- BEGIN: Theme CSS-->
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap-extended.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/components.css')}}">
-  
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/dashboard-analytics.css')}}">
-    
-   @yield('css')
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/bootstrap-extended.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/colors/palette-gradient.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/components.css')}}">
+      
+        <!-- BEGIN: Page CSS-->
+        {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/dashboard-analytics.css')}}">
+    --}}
+        @yield('css')
     
     <!-- END: Page CSS-->
 
@@ -47,9 +47,7 @@
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
-
 <body class="horizontal-layout horizontal-menu 2-columns  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
-
     <!-- BEGIN: Header-->
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-fixed navbar-shadow navbar-brand-center">
         <div class="navbar-header d-xl-block d-none">
@@ -116,6 +114,7 @@
                     <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
                 </ul>
             </div>
+            <?php $graphValue = Auth::user()->graph_setting->first()->value;  ?>        
             <!-- Horizontal menu content-->
             <div class="navbar-container main-menu-content" data-menu="menu-container">
                 <!-- include/includes/mixins-->
@@ -128,20 +127,36 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- <li class="dropdown nav-item" style="margin-left:1050px;" data-menu="dropdown">
-                        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i><span data-i18n="Pages">Last 7 days</span>
+                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-copy"></i><span data-i18n="Pages">Actions</span></a>
+                       
+                    </li>
+                    <li class="dropdown nav-item" style="margin-left:1050px;" data-menu="dropdown">
+                        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i>
+                            <span data-i18n="Pages">
+                                @If($graphValue == '30')
+                                Last month
+                                @elseif($graphValue == '365')  
+                                    Last year
+                                @else
+                                    Last {{$graphValue}} days
+                                @endif
+                            </span>
                         </a>
-
-                        <ul class="dropdown-menu" id="graphValue">
-                            <li class="dropdown dropdown-submenu"><a class="dropdown-item updateGraph" data-graphValue="7"><i class="feather icon-circle"></i>Last Month</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu">
+                                <a class="dropdown-item updateGraph" data-value="30"><i class="feather icon-circle"></i>
+                                    Last Month
+                                </a>
                             </li>
-                            <li class="dropdown dropdown-submenu"><a class="dropdown-item"><i class="feather icon-circle"></i>Last 28 Days</a>
+                                <li class="dropdown dropdown-submenu"><a class="dropdown-item updateGraph" data-value="28"><i class="feather icon-circle"></i>Last 28 Days</a>
                             </li>
-                            <li class="dropdown dropdown-submenu"><a class="dropdown-item"><i class="feather icon-circle"></i>Last Year</a>
+                            <li class="dropdown dropdown-submenu"><a class="dropdown-item updateGraph" data-value="365"><i class="feather icon-circle"></i>Last Year</a>
                             </li>
                         </ul>
-                    </li> --}}
+                    </li>
                 </ul>
+
+                
             </div>
         </div>
     </div>

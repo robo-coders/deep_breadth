@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+route::get('/index','companyGraphController@index');
+
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){

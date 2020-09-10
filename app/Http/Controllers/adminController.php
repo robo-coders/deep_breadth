@@ -10,6 +10,7 @@ use Auth;
 use App\user;
 use App\users_info;
 use App\survey_data;
+use App\graph_setting;
 use Session;
 use Hash;
 use Illuminate\Support\Facades\Validator;
@@ -119,6 +120,12 @@ class adminController extends Controller
         $store2->company_name = $request->company_name;
         $store2->company_location = $request->company_location;
         $store2->save();
+
+        $store = new graph_setting();
+        $store->user_id = $user_id;
+        $store->value = '7';
+        $store->save();
+        
         session()->flash('create_company','Company has been created successfully');
         return redirect(route('company_index_by_admin')); 
     }

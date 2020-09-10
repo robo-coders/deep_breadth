@@ -878,9 +878,8 @@ lineAreaChart.render();
     type:"GET",
     url:"/wellness",
     success: function(response) {
-      
       var options = {
-        series: response.report,
+        series: response,
         chart: {
         width: '60%',
         type: 'donut',
@@ -893,7 +892,8 @@ lineAreaChart.render();
       },
       fill: {
         // type: 'gradient',
-        colors: ['#F44336', '#E91E63', '#9C27B0', '#000000', '#E91E58']
+      colors: ['#7367F0', '#FF9F43', '#EA5455', '#E91E58', '#28C76F']
+      // 9C27B0
       },
       dataLabels: {
         formatter(val, opts) {
@@ -908,10 +908,6 @@ lineAreaChart.render();
 
       var chart = new ApexCharts(document.querySelector("#donut-chart"), options);
       chart.render();
-
-
-
-
 
 
     //   console.log('this si donut');

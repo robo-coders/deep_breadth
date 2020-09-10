@@ -375,23 +375,25 @@
 <script>
 $(document).ready(function(){
     $(document).on('click','.updateGraph',function(){
-        var graphValue = $(this).data("graphValue");
-        alert(graphValue);
+        var graphValue = $(this).data('value');
         $.ajax({
         type:'get',
         url:'/update/graph',
+        data:{'value':graphValue},
+        dataType:'json',
         success:function(response){
-             console.log(response);
-
+            console.log(response);
             Swal.fire(
             'Congrats!',
             'Graphs has been updated!',
             'success',
-            )
-            
+            ).then(function(){
+                location.reload();
+            });
             }
         });
     });
+    
 });
 </script>
 
