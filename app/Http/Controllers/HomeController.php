@@ -7,6 +7,7 @@ use App\user;
 use App\users_info;
 use App\survey_data;
 use Auth;
+use DB;
 use App\Http\Resources\UserResponse;
 
 class HomeController extends Controller
@@ -106,5 +107,14 @@ class HomeController extends Controller
     public function survey_form(Request $request){
         $department = $request->department_name;        
         return view('company.survey_form',compact('department'));
+    }
+    public function surveyReportCompany()
+    {
+        $views = DB::table('survey_datas')
+        ->select('user_id', DB::raw('SUM(painStressLevelAfter) as performance'))
+        ->groupBy('user_id')
+        ->get();
+        return $views;
+        return view('company.survey_report',compact('views'));
     }
 }

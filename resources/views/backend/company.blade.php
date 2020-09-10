@@ -127,14 +127,15 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-copy"></i><span data-i18n="Pages">Actions</span></a>
-                       
+                    <li class="nav-item"><a href="{{ route('surveyReportCompany') }}" class="nav-link"><i class="feather icon-layers"></i><span data-i18n="Pages">Report</span></a>
                     </li>
-                    <li class="dropdown nav-item" style="margin-left:1050px;" data-menu="dropdown">
+                </ul>
+                <ul class="nav navbar-nav pull-right" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="dropdown nav-item" data-menu="dropdown">
                         <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i>
                             <span data-i18n="Pages">
                                 @If($graphValue == '30')
-                                Last month
+                                    Last month
                                 @elseif($graphValue == '365')  
                                     Last year
                                 @else

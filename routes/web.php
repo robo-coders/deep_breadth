@@ -53,8 +53,9 @@ route::get('/wellness','companyGraphController@continuousWellness')->name('conti
 route::get('/pain/stress/level/before','companyGraphController@pain_stress_level_before')->name('pain_stress_level_before');
 route::get('/pain/stress/level/after','companyGraphController@pain_stress_level_after')->name('pain_stress_level_after');
 route::get('/mood/morale/','companyGraphController@mood_morale')->name('mood_morale');
-
 route::get('/update/graph','companyGraphController@updateGraph')->name('updateGraph');
+
+route::get('/survey/report','HomeController@surveyReportCompany')->name('surveyReportCompany');
 
 
 
