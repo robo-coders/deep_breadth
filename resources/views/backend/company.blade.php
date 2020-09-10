@@ -118,7 +118,7 @@
             <!-- Horizontal menu content-->
             <div class="navbar-container main-menu-content" data-menu="menu-container">
                 <!-- include/includes/mixins-->
-                <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                <ul class="nav navbar-nav pull-left" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="active dropdown nav-item" data-menu="dropdown"><a class="nav-link" href="{{ url('/user/redirect') }}"><i class="feather icon-home"></i><span data-i18n="Dashboard">Dashboard</span></a>
                     </li>
                     <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-grid"></i><span data-i18n="Pages">Actions</span></a>

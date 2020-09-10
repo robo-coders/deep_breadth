@@ -110,11 +110,10 @@ class HomeController extends Controller
     }
     public function surveyReportCompany()
     {
-        $views = DB::table('survey_datas')
-        ->select('user_id', DB::raw('SUM(painStressLevelAfter) as performance'))
-        ->groupBy('user_id')
+        return ' under development';
+        $data = DB::table('survey_datas')
+        ->where('user_id',Auth::user()->id)
         ->get();
-        return $views;
         return view('company.survey_report',compact('views'));
     }
 }
