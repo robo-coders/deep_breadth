@@ -3,7 +3,6 @@
    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/survey.css')}}">
    <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/survey2.css')}}">
-
 @endsection
 @section('body')
 <div class="app-content content">

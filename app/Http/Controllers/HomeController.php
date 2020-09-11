@@ -110,8 +110,10 @@ class HomeController extends Controller
     }
     public function surveyReportCompany()
     {
-        return ' under development';
-        $data = DB::table('survey_datas')
+        // 'painStressLevelAfter', 'moodMoraleLevelAfter', 'continuousWellness'
+        
+        $views = DB::table('survey_datas')
+        ->selectRaw('*, (painStressLevelAfter+moodMoraleLevelAfter+continuousWellness)/15*100 AS performance')
         ->where('user_id',Auth::user()->id)
         ->get();
         return view('company.survey_report',compact('views'));

@@ -77,7 +77,7 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Continuous wellness (Under Development )</h4>
+                                    <h4 class="card-title">Continuous wellness </h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">

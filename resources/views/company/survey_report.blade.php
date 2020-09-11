@@ -1,4 +1,7 @@
 @extends('backend.company')
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/colors.css')}}">
+@endsection
 @section('body')
 <div class="app-content content">
    <div class="content-wrapper">
@@ -35,7 +38,7 @@
                                         <tr>
                                             <th> # </th>
                                             <th width="300">Department</th>
-                                            <th width="400">Performance</th>
+                                            <th width="300">Performance</th>
                                             <th>Comments</th>
                                             <th>Date</th>
                                         </tr>
@@ -47,13 +50,31 @@
                                                 <th scope="row">{{$serial}}</th>
                                                 <td> {{$view->department_name}} </td>
                                                 <td>
-                                                    <span>125 km</span>
-                                                    <div class="progress progress-bar-danger mt-1 mb-0">
-                                                        <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
+                                                    <span>{{round($view->performance)}} %</span>
+                                                    @If($view->performance > '85')
+                                                        <div class="progress progress-bar-success mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    @elseif($view->performance > '75')  
+                                                        <div class="progress progress-bar-info mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>  
+                                                    @elseif($view->performance > '70')  
+                                                        <div class="progress progress-bar-warning mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div> 
+                                                    @elseif($view->performance > '65')  
+                                                        <div class="progress progress-bar-danger mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>  
+                                                    @else
+                                                        <div class="progress progress-bar-dark mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>      
+                                                    @endif
                                                 </td>
                                                 <td> {{$view->comments}} </td>
-                                                <td> {{$view->created_at->toFormattedDateString()}} </td>
+                                                <td> {{$view->created_at}} </td>
                                             </tr>
                                         </tbody>
                                     <?php $serial++ ?>
