@@ -33,6 +33,13 @@ class adminController extends Controller
     	if (auth::user()->role ==  '1') {
             return redirect('/admin/dashboard');
         }elseif (auth::user()->role == '2') {
+            $user_id = Auth::user()->id;
+            $store = Dashboard_setting::where('user_id',$user_id)->first();
+                if($store == null){
+                    $store = new Dashboard_setting();
+                    $store->user_id = $user_id;
+                    $store->save();
+                }
             return redirect('/company/dashboard');
         }
         else{
