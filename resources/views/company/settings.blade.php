@@ -6,12 +6,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Profile</h2>
+                        <h2 class="content-header-title float-left mb-0">Dashboard</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('redirect_user') }}">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Profile
+                                <li class="breadcrumb-item active">Settings
                                 </li>
                             </ol>
                         </div>
@@ -58,7 +58,7 @@
                             <ul class="nav nav-pills flex-column mt-md-0 mt-1">
                                 <li class="nav-item">
                                     <a class="nav-link d-flex py-75 active" id="account-pill-notifications" data-toggle="pill" href="#account-vertical-notifications" aria-expanded="false">
-                                        <i class="feather icon-message-circle mr-50 font-medium-3"></i> Notifications
+                                        <i class="feather icon-home mr-50 font-medium-3"></i> Dashboard
                                     </a>
                                 </li>
                             </ul>
@@ -70,34 +70,33 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="account-vertical-notifications" role="tabpanel" aria-labelledby="account-pill-notifications" aria-expanded="false">
                                                 <div class="row">
-                                                    <h6 class="m-1">Activity</h6>
+                                                    <h6 class="m-1">Mode</h6>
                                                     <div class="col-12 mb-1">
-                                                        <div class="row">
-                                                            <h6 class="m-1">Activity</h6>
-                                                            <div class="col-12 mb-1">
-                                                                <div class="custom-control custom-switch custom-control-inline">
-                                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch1">
-                                                                    <label class="custom-control-label mr-1" for="accountSwitch1"></label>
-                                                                    <span class="switch-label w-100">Email me when someone comments
-                                                                        onmy
-                                                                        article</span>
+                                                        <form action="{{ route('switchDashboardMode') }}" method="post">
+                                                            @csrf
+                                                            <div class="row">
+                                                                <h6 class="m-1">Switch to dark</h6>
+                                                                <div class="col-12 mb-1">
+                                                                    <div class="custom-control custom-switch custom-control-inline">
+                                                                        @if(Auth::user()->userDashboard->dashboard == '1')
+                                                                            <input type="checkbox" name="dashboardValue" class="custom-control-input" checked id="accountSwitch1">
+                                                                        @else
+                                                                            <input type="checkbox" name="dashboardValue" class="custom-control-input" id="accountSwitch1">
+                                                                        @endif
+                                                                        <label class="custom-control-label mr-1" for="accountSwitch1"></label>
+                                                                        <span class="switch-label w-100">
+                                                                            Dark mode can reduce eye strain in low-light conditions. 100% contrast (white on a black background) can be harder to read and cause more eye strain.
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                                    <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
+                                                                        changes</button>
+                                                                    <button type="reset" class="btn btn-outline-warning">Cancel</button>
                                                                 </div>
                                                             </div>
-                                                            <h6 class="m-1">Application</h6>
-                                                            <div class="col-12 mb-1">
-                                                                <div class="custom-control custom-switch custom-control-inline">
-                                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch4">
-                                                                    <label class="custom-control-label mr-1" for="accountSwitch4"></label>
-                                                                    <span class="switch-label w-100">News and announcements</span>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                                    changes</button>
-                                                                <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                                            </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

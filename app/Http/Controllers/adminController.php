@@ -11,6 +11,7 @@ use App\user;
 use App\users_info;
 use App\survey_data;
 use App\graph_setting;
+use App\Dashboard_setting;
 use Session;
 use Hash;
 use Illuminate\Support\Facades\Validator;
@@ -40,7 +41,7 @@ class adminController extends Controller
     }
 
     public function changePassword(Request $request){
-        $vali = $request->validate([
+        $validate = $request->validate([
             'old_password' => 'required',
             'password'     => 'required|min:6|confirmed',
             // 'password_confirmation' => 'required|confirmed',
@@ -60,7 +61,35 @@ class adminController extends Controller
         return back()->with('success','Password changed successfully');
 
     }
-    
+    public function switchDashboardMode(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $store = Dashboard_setting::where('user_id',$user_id)->first();
+            if($store == null){
+                $store = new Dashboard_setting();
+                $store->user_id = $user_id;
+                $store->save();
+                
+                if($request->dashboardValue){
+                    $store->dashboard = '1';
+                    $store->save();
+                }else{
+                    $store->dashboard = '0';
+                    $store->save();
+                }
+            }else{
+                if($request->dashboardValue){
+                    $store->dashboard = '1';
+                    $store->save();
+                }else{
+                    $store->dashboard = '0';
+                    $store->save();
+                }
+            }
+        session()->flash('success','Congrats! Mode has been switched.');
+        return back();
+        
+    }
     public function create_admin(adminFormValidation $request)
     {
 
@@ -124,6 +153,10 @@ class adminController extends Controller
         $store = new graph_setting();
         $store->user_id = $user_id;
         $store->value = '7';
+        $store->save();
+        
+        $store = new Dashboard_setting();
+        $store->user_id = $user_id;
         $store->save();
         
         session()->flash('create_company','Company has been created successfully');

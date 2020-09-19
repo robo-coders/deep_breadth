@@ -116,7 +116,11 @@ $(window).on("load", function () {
 
   //Get the context of the Chart canvas element we want to select
   var barChartctx = $("#bar-chart");
-
+  $.ajax({
+    type:"GET",
+    url:"/submit/survey/report",
+    success: function(response) {
+ 
   // Chart Options
   var barchartOptions = {
     // Elements options apply to all of the options unless overridden in a dataset
@@ -156,17 +160,17 @@ $(window).on("load", function () {
     },
     title: {
       display: true,
-      text: 'Predicted world population (millions) in 2050'
+      text: 'Survey submission in 2020'
     },
 
   };
 
   // Chart Data
   var barchartData = {
-    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+    labels: response["1"],
     datasets: [{
-      label: "Population (millions)",
-      data: [2478, 5267, 734, 784, 433],
+      label: "Survey (users)",
+      data: response["0"],
       backgroundColor: themeColors,
       borderColor: "transparent"
     }]
@@ -184,6 +188,9 @@ $(window).on("load", function () {
   // Create the chart
   var barChart = new Chart(barChartctx, barChartconfig);
 
+    }
+  });
+  
 
 
   // Horizontal Chart

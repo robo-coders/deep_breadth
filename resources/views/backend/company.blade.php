@@ -15,7 +15,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}
 
     <!-- BEGIN: Vendor CSS-->
 
@@ -35,6 +35,10 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/colors/palette-gradient.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/components.css')}}">
       
+        {{-- Dark layout css start --}}
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/components.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/themes/dark-layout.css')}}">
+        {{-- Dark layout css ends --}}
         <!-- BEGIN: Page CSS-->
         {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/core/menu/menu-types/horizontal-menu.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/app-assets/css/pages/dashboard-analytics.css')}}">
@@ -47,7 +51,12 @@
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
-<body class="horizontal-layout horizontal-menu 2-columns  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+
+    @if(Auth::user()->userDashboard->dashboard == '1')
+        <body class="horizontal-layout horizontal-menu dark-layout 2-columns  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="2-columns" data-layout="dark-layout">
+    @else
+        <body class="horizontal-layout horizontal-menu 2-columns  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+    @endif
     <!-- BEGIN: Header-->
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-fixed navbar-shadow navbar-brand-center">
         <div class="navbar-header d-xl-block d-none">
@@ -85,7 +94,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('edit_company_profile',['id'=>auth()->user()->id]) }}"><i class="feather icon-user"></i> Edit Profile
                                 </a>
-                                {{-- <a class="dropdown-item" href="{{ route('companySettings',['id'=>auth()->user()->id]) }}"><i class="feather icon-settings"></i>Settings</a> --}}
+                                <a class="dropdown-item" href="{{ route('companySettings',['id'=>auth()->user()->id]) }}"><i class="feather icon-settings"></i>Settings</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();"><i class="feather icon-power"></i> Logout</a>
                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -134,7 +143,9 @@
                     <li class="dropdown nav-item" data-menu="dropdown">
                         <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-bar-chart-2"></i>
                             <span data-i18n="Pages">
-                                @If($graphValue == '30')
+                                @If($graphValue == '7')
+                                    Last 7 days
+                                @elseif($graphValue == '30')  
                                     Last month
                                 @elseif($graphValue == '365')  
                                     Last year
@@ -144,6 +155,11 @@
                             </span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu">
+                                <a class="dropdown-item updateGraph" data-value="7"><i class="feather icon-circle"></i>
+                                    Last 7 days
+                                </a>
+                            </li>
                             <li class="dropdown dropdown-submenu">
                                 <a class="dropdown-item updateGraph" data-value="30"><i class="feather icon-circle"></i>
                                     Last Month
@@ -191,12 +207,13 @@
     <script src="{{asset('/assets/backend/app-assets/js/core/app-menu.js')}}"></script>
     <script src="{{asset('/assets/backend/app-assets/js/core/app.js')}}"></script>
     <script src="{{asset('/assets/backend/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+    @yield('scripts')   
 
     <!-- BEGIN: Page JS-->
     <script src="{{asset('/assets/backend/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <!-- END: Page JS-->
+
     
-@yield('scripts')   
 </body>
 <!-- END: Body-->
 

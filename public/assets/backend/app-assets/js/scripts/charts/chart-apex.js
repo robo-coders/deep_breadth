@@ -884,7 +884,7 @@ lineAreaChart.render();
         width: '60%',
         type: 'donut',
       },
-      labels: ["4", "1", "3", "2", "5"],
+      labels: ["0", "0", "0", "0", "0"],
       theme: {
         monochrome: {
           enabled: true

@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="col-lg-6 col-md-12">
+                        {{-- <div class="col-lg-6 col-md-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Survey Chart</h4>
@@ -73,8 +73,24 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12">
+                        </div> --}}
+                        <!-- Bar Chart -->
+                        {{-- <div class="col-lg-6 col-md-12"> 
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Bar Chart</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body pl-0">
+                                        <div class="height-300">
+                                            <canvas id="bar-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        {{-- <div class="col-lg-6 col-md-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Continuous wellness </h4>
@@ -85,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </section>
                     <div class="row">
@@ -372,6 +388,11 @@
      {{-- Mood / Morale chart start --}}
      <script src="{{asset('/assets/backend/app-assets/js/scripts/charts/chart-apex.js')}}"></script>
      {{-- Mood / Morale chart ends --}}
+     {{-- test chart --}}
+     <script src="{{asset('assets/backend/app-assets/vendors/js/charts/chart.min.js')}}"></script>
+     <script src="{{asset('assets/backend/app-assets/js/scripts/charts/chart-chartjs.js')}}"></script>
+
+
 <script>
 $(document).ready(function(){
     $(document).on('click','.updateGraph',function(){

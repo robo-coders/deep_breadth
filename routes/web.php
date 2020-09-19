@@ -21,6 +21,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function(){
 Route::get('/user/redirect', 'adminController@redirect_user')->name('redirect_user');
 Route::post('/change/password','adminController@changePassword')->name('change_password');
+Route::post('/dashboard/switch/mode','adminController@switchDashboardMode')->name('switchDashboardMode');
 
 //Admin
 route::get('/admin/dashboard','HomeController@admin')->name('admin_dashboard');

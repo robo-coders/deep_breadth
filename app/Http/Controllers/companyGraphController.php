@@ -30,11 +30,13 @@ class companyGraphController extends Controller
         $graphDays = Auth::user()->graph_setting
         ->first()
         ->value;
-
-        $graph = survey_data::all();
-
+        
         $date = Carbon::now();
         $sevenDaysEarlier = Carbon::now()->subDays($graphDays);
+
+        $graph = survey_data::where('user_id',Auth::user()->id)
+        ->whereBetween('created_at', [$sevenDaysEarlier,$date])
+        ->get();
 
         $count = survey_data::where('user_id',Auth::user()->id)
         ->whereBetween('created_at', [$sevenDaysEarlier,$date])
@@ -46,6 +48,8 @@ class companyGraphController extends Controller
         ->sum('painStressLevelBefore');
         if($count > 0){
             $average = $sum / $count;
+            $average = round($count * 5 / $average);
+
             return ['count' => $count, 'average' => $average];
         }else{
             return ['count' => 'N/A ', 'average' => 'N/A '];
@@ -59,10 +63,13 @@ class companyGraphController extends Controller
         ->first()
         ->value;
 
-        $graph = survey_data::all();
         $date = Carbon::now();
         $sevenDaysEarlier = Carbon::now()->subDays($graphDays);
 
+        $graph = survey_data::where('user_id',Auth::user()->id)
+        ->whereBetween('created_at', [$sevenDaysEarlier,$date])
+        ->get();
+        
         $count = survey_data::where('user_id',Auth::user()->id)
         ->whereBetween('created_at', [$sevenDaysEarlier,$date])
         ->get()
@@ -72,7 +79,9 @@ class companyGraphController extends Controller
         ->get()
         ->sum('painStressLevelAfter');
         if($count > 0){
+            // $average = $sum / $count * 5;
             $average = $sum / $count;
+            $average = round($count * 5 / $average);
             return $average;
 
         }else{
@@ -123,7 +132,7 @@ class companyGraphController extends Controller
         $response         = [];
         $dayNames         = [];
         $submissionsCount = [];
-        for ($i=1; $i <= 7; $i++) { 
+        for ($i=1; $i <= $graphDays; $i++) { 
             $date  = Carbon::now()->subDays($i);
             $count = Auth::user()->survey_data()->whereDate("created_at", $date)->count();
             array_push($dayNames, $count);

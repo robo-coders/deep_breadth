@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(graph_setting::class, "user_id");
     }
+    public function userDashboard()
+    {
+        return $this->hasOne(Dashboard_setting::class, "user_id");
+    }
 }
