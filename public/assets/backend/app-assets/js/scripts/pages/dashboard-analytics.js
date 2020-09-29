@@ -485,71 +485,77 @@ $.ajax({
 
   // Product Order Chart starts
   // -----------------------------
-
-  var productChartoptions = {
-    chart: {
-      height: 325,
-      type: 'radialBar',
-    },
-    colors: [$primary, $warning, $danger],
-    fill: {
-      type: 'gradient',
-      gradient: {
-        // enabled: true,
-        shade: 'dark',
-        type: 'vertical',
-        shadeIntensity: 0.5,
-        gradientToColors: [$primary_light, $warning_light, $danger_light],
-        inverseColors: false,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100]
-      },
-    },
-    stroke: {
-      lineCap: 'round'
-    },
-    plotOptions: {
-      radialBar: {
-        size: 165,
-        hollow: {
-          size: '20%'
+  $.ajax({
+    type:"GET",
+    url:"/wellness",
+    success: function(response) {
+      var productChartoptions = {
+        chart: {
+          height: 325,
+          type: 'radialBar',
         },
-        track: {
-          strokeWidth: '100%',
-          margin: 15,
+        colors: [$primary, $warning, $danger],
+        fill: {
+          type: 'gradient',
+          gradient: {
+            // enabled: true,
+            shade: 'dark',
+            type: 'vertical',
+            shadeIntensity: 0.5,
+            gradientToColors: [$primary_light, $warning_light, $danger_light],
+            inverseColors: false,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          },
         },
-        dataLabels: {
-          name: {
-            fontSize: '18px',
-          },
-          value: {
-            fontSize: '16px',
-          },
-          total: {
-            show: true,
-            label: 'Total',
-
-            formatter: function (w) {
-              // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-              return 42459
+        stroke: {
+          lineCap: 'round'
+        },
+        plotOptions: {
+          radialBar: {
+            size: 165,
+            hollow: {
+              size: '20%'
+            },
+            track: {
+              strokeWidth: '100%',
+              margin: 15,
+            },
+            dataLabels: {
+              name: {
+                fontSize: '18px',
+              },
+              value: {
+                fontSize: '16px',
+              },
+              total: {
+                show: true,
+                label: 'Total',
+    
+                formatter: function (w) {
+                  // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                  return 42459
+                }
+              }
             }
           }
-        }
+        },
+        series: response,
+        labels: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+    
       }
-    },
-    series: [70, 52, 26],
-    labels: ['Finished', 'Pending', 'Rejected'],
-
-  }
-
-  var productChart = new ApexCharts(
-    document.querySelector("#product-order-chart"),
-    productChartoptions
-  );
-
-  productChart.render();
-
+    
+      var productChart = new ApexCharts(
+        document.querySelector("#product-order-chart"),
+        productChartoptions
+      );
+    
+      productChart.render();
+    
+    }
+  });
+  
   // Product Order Chart ends //
 
 

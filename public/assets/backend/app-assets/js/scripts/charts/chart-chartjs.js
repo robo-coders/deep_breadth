@@ -23,6 +23,8 @@ $(window).on("load", function () {
 
   var themeColors = [$primary, $success, $danger, $warning, $label_color];
 
+  var customColors = ["red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black","red", "yellow", "green", "orange", "pink", "black"];
+
   // Line Chart
   // ------------------------------------------
 
@@ -171,7 +173,7 @@ $(window).on("load", function () {
     datasets: [{
       label: "Survey (users)",
       data: response["0"],
-      backgroundColor: themeColors,
+      backgroundColor: customColors,
       borderColor: "transparent"
     }]
   };

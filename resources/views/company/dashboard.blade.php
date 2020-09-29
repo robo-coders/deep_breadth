@@ -75,10 +75,10 @@
                             </div>
                         </div> --}}
                         <!-- Bar Chart -->
-                        {{-- <div class="col-lg-6 col-md-12"> 
+                        <div class="col-lg-12 col-md-12"> 
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Bar Chart</h4>
+                                    <h4 class="card-title">Survey Chart</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body pl-0">
@@ -88,24 +88,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
-
-                        {{-- <div class="col-lg-6 col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Continuous wellness </h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div id="donut-chart" class="mx-auto"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-
+                        </div>
                     </section>
                     <div class="row">
-                        <div class="col-md-6 col-12">
+                        <div class="col-lg-6 col-12">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between pb-0">
                                     <h4 class="card-title">Pain Stress Level Before</h4>
@@ -142,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-lg-6 col-12">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between pb-0">
                                     <h4 class="card-title">Pain Stress Level After</h4>
@@ -180,7 +166,48 @@
                             </div>
                         </div>
                     </div>
-
+                       
+                    {{-- <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between pb-0">
+                                    <h4>Continuous wellness</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div id="product-order-chart" class="mb-3"></div>
+                                        <div class="chart-info d-flex justify-content-between mb-1">
+                                            <div class="series-info d-flex align-items-center">
+                                                <i class="fa fa-circle-o text-bold-700 text-primary"></i>
+                                                <span class="text-bold-600 ml-50">Finished</span>
+                                            </div>
+                                            <div class="product-result">
+                                                <span>23043</span>
+                                            </div>
+                                        </div>
+                                        <div class="chart-info d-flex justify-content-between mb-1">
+                                            <div class="series-info d-flex align-items-center">
+                                                <i class="fa fa-circle-o text-bold-700 text-warning"></i>
+                                                <span class="text-bold-600 ml-50">Pending</span>
+                                            </div>
+                                            <div class="product-result">
+                                                <span>14658</span>
+                                            </div>
+                                        </div>
+                                        <div class="chart-info d-flex justify-content-between mb-75">
+                                            <div class="series-info d-flex align-items-center">
+                                                <i class="fa fa-circle-o text-bold-700 text-danger"></i>
+                                                <span class="text-bold-600 ml-50">Rejected</span>
+                                            </div>
+                                            <div class="product-result">
+                                                <span>4758</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
 {{-- Other Graphs  --}}
 
                     {{-- <div class="row match-height">
@@ -403,14 +430,7 @@ $(document).ready(function(){
         data:{'value':graphValue},
         dataType:'json',
         success:function(response){
-            console.log(response);
-            Swal.fire(
-            'Congrats!',
-            'Graphs has been updated!',
-            'success',
-            ).then(function(){
-                location.reload();
-            });
+            location.reload();
             }
         });
     });

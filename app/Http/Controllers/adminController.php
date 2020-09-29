@@ -50,21 +50,21 @@ class adminController extends Controller
     public function changePassword(Request $request){
         $validate = $request->validate([
             'old_password' => 'required',
-            'password'     => 'required|min:6|confirmed',
-            // 'password_confirmation' => 'required|confirmed',
         ]);
-
+        
         if(!(Hash::check($request->get('old_password'), Auth::user()->password))){
             return back()->with('error','Your current password does not match');
         }
-        elseif(strcmp($request->get('old_password'),$request->get('password'))== 0){
-            return back()->with('error','Your current & new password can not be the same');
-        }
-        else{
-            $user = Auth::user();
-            $user->password = Hash::make($request->get('password'));
-            $user->save();
-        }
+
+        $validate = $request->validate([
+            'password'     => 'required|min:6|confirmed'
+        ]);
+
+
+        $user = Auth::user();
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+        
         return back()->with('success','Password changed successfully');
 
     }
