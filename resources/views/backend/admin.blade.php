@@ -216,7 +216,7 @@
         })
     }
            
-        function deleteDataCompany(id){
+    function deleteDataCompany(id){
             var csrf_token=$('meta[name="csrf-token"]').attr('content');
             Swal.fire({
                 title: 'Are you sure?',
@@ -253,7 +253,7 @@
         }
     })
 }
-
+  
     </script>
 </body>
 <!-- END: Body-->

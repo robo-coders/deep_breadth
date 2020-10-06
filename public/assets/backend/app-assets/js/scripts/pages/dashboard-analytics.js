@@ -494,7 +494,7 @@ $.ajax({
           height: 325,
           type: 'radialBar',
         },
-        colors: [$primary, $warning, $danger],
+        colors: [$primary, $info, $warning ,$danger,$primary],
         fill: {
           type: 'gradient',
           gradient: {
@@ -547,7 +547,7 @@ $.ajax({
       }
     
       var productChart = new ApexCharts(
-        document.querySelector("#product-order-chart"),
+        document.querySelector("#talha"),
         productChartoptions
       );
     

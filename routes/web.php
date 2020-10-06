@@ -47,6 +47,8 @@ route::post('/update/profile/{id}','adminController@update_company_profile')->na
 route::post('/delete/company/{id}','adminController@delete_company_by_admin')->name('delete_company_by_admin');
 route::post('/review/save','adminController@saveReview')->name('saveReview');
 route::get('/company/settings/{id}','adminController@companySettings')->name('companySettings');
+route::post('/delete/survey/company/{id}','companyGraphController@deleteSurvey')->name('deleteSurvey');
+
 
 //Graphs
 route::get('/submit/survey/report','companyGraphController@submitSurveyReport')->name('submitSurveyReport');

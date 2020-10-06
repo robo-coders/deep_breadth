@@ -165,6 +165,45 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- <div class="col-lg-4 col-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between pb-0">
+                                    <h4>Continuous wellness</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div id="talha" class="mb-3"></div>
+                                        <div class="chart-info d-flex justify-content-between mb-1">
+                                            <div class="series-info d-flex align-items-center">
+                                                <i class="fa fa-circle-o text-bold-700 text-primary"></i>
+                                                <span class="text-bold-600 ml-50">Finished</span>
+                                            </div>
+                                            <div class="product-result">
+                                                <span>23043</span>
+                                            </div>
+                                        </div>
+                                        <div class="chart-info d-flex justify-content-between mb-1">
+                                            <div class="series-info d-flex align-items-center">
+                                                <i class="fa fa-circle-o text-bold-700 text-warning"></i>
+                                                <span class="text-bold-600 ml-50">Pending</span>
+                                            </div>
+                                            <div class="product-result">
+                                                <span>14658</span>
+                                            </div>
+                                        </div>
+                                        <div class="chart-info d-flex justify-content-between mb-75">
+                                            <div class="series-info d-flex align-items-center">
+                                                <i class="fa fa-circle-o text-bold-700 text-danger"></i>
+                                                <span class="text-bold-600 ml-50">Rejected</span>
+                                            </div>
+                                            <div class="product-result">
+                                                <span>4758</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
                        
                     {{-- <div class="row">
@@ -175,7 +214,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <div id="product-order-chart" class="mb-3"></div>
+                                        <div id="talha" class="mb-3"></div>
                                         <div class="chart-info d-flex justify-content-between mb-1">
                                             <div class="series-info d-flex align-items-center">
                                                 <i class="fa fa-circle-o text-bold-700 text-primary"></i>

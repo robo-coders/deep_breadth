@@ -41,6 +41,7 @@
                                             <th width="300">Performance</th>
                                             <th>Comments</th>
                                             <th>Date</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <?php $serial = 1; ?>
@@ -75,6 +76,16 @@
                                                 </td>
                                                 <td> {{$view->comments}} </td>
                                                 <td> {{$view->created_at}} </td>
+                                                <td> 
+                                                    <div class="dropdown">
+                                                        <button class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Actions
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                           <a onclick="deleteSurveyComapny({{$view->id}})" class="dropdown-item">Delete</a>
+                                                        </div>
+                                                     </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     <?php $serial++ ?>

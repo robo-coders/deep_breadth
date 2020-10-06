@@ -88,6 +88,12 @@ class companyGraphController extends Controller
             return $average = 'N/A ';
         }
     }
+    public function deleteSurvey(Request $request, $id)
+    {
+        $dell = survey_data::find($id);
+        $dell->delete();
+        return back();
+    }
     public function count_pain_stress_level_before()
     {
         $count = survey_data::count();

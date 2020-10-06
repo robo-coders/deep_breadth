@@ -213,7 +213,47 @@
     <script src="{{asset('/assets/backend/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <!-- END: Page JS-->
 
-    
+    <script>
+              
+function deleteSurveyComapny(id){
+            var csrf_token=$('meta[name="csrf-token"]').attr('content');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-danger ml-1',
+                buttonsStyling: false,
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ url('/delete/survey/company') }}" + '/' +id,
+                        type: "POST",
+                        data: {'_method' : 'POST', '_token' : csrf_token },
+                        success: function(data) {
+                            //table1.ajax.reload();
+                            if (result.value) {
+                            Swal.fire(
+                            {
+                                type: "success",
+                                title: 'Deleted!',
+                                text: 'Survey has been deleted.',
+                                confirmButtonClass: 'btn btn-success',
+                            }).then(function(){
+                                location.reload();
+                            });
+                    }
+                }
+            })
+        }
+    })
+}
+
+    </script>
 </body>
 <!-- END: Body-->
 
