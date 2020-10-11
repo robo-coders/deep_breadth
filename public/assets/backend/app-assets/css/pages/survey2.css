@@ -703,3 +703,50 @@ span.mood-after-rating7.custom-btn{
 }
 
   /* Mood after css end */
+
+@media only screen and (max-width: 767px){
+  
+.emoji-rating span.custom-btn {
+     margin-right: 10px;
+}
+.pain-after-rating span.custom-btn {
+    margin-right: 10px;
+}
+.mood-before-rating span.custom-btn {
+    margin-right: 10px;
+}
+.mood-after-rating span.custom-btn {
+    margin-right: 10px;
+}
+.pain-after-rating{
+    font-size: 24px;
+}
+.emoji-rating {
+    font-size: 24px;
+}
+.mood-before-rating {
+    font-size: 24px;
+}
+.mood-after-rating {
+    font-size: 24px;
+}
+.kt-separator button.btn {
+    padding: 14px 9px;
+}
+.card-dashboard .card-header {
+    padding: 9px 4px;
+}
+.card-dashboard h1{
+     font-size: 16px; 
+}
+.activeEmoji::before {
+    font-size: 35px !important;
+    margin-left: -8px !important;
+}
+.activeEmoji::after{
+    font-size: 14px !important;
+    left: -19px !important;
+    top: 8px !important;  
+}
+
+}
