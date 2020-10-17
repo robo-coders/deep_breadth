@@ -132,8 +132,12 @@
                     </li>
                     <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-grid"></i><span data-i18n="Pages">Actions</span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown dropdown-submenu"><a class="dropdown-item" data-toggle="modal" data-target="#inlineForm" data-i18n="Authentication"><i class="feather icon-file-minus"></i>Survey Form</a>
+                            <li class="dropdown dropdown-submenu">
+                                {{-- <a id="surveymodal" class="dropdown-item" data-toggle="modal" data-target="#inlineForm" data-i18n="Authentication"><i class="feather icon-file-minus"></i>Survey Form
+                                </a> --}}
+                                <a class="dropdown-item" onclick="$('#inlineForm').modal('show')"> <i class="feather icon-file-minus"></i>Survey Form </a>
                             </li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item"><a href="{{ route('surveyReportCompany') }}" class="nav-link"><i class="feather icon-layers"></i><span data-i18n="Pages">Report</span></a>
@@ -252,8 +256,7 @@ function deleteSurveyComapny(id){
         }
     })
 }
-
-    </script>
+</script>
 </body>
 <!-- END: Body-->
 

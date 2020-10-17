@@ -249,7 +249,7 @@
           var dd = $(this).find('.dropdown-menu');
           if (dd) {
             var pageHeight = $(window).height(),
-              // ddTop = dd.offset().top,
+              ddTop = dd.offset().top,
               ddTop = $(this).position().top,
               ddLeft = dd.offset().left,
               ddWidth = dd.width(),
