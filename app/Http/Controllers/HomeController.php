@@ -112,10 +112,15 @@ class HomeController extends Controller
     {
         // 'painStressLevelAfter', 'moodMoraleLevelAfter', 'continuousWellness'
         
-        $views = DB::table('survey_datas')
-        ->selectRaw('*, (painStressLevelAfter+moodMoraleLevelAfter+continuousWellness)/15*100 AS performance')
+        // $views = DB::table('survey_datas')
+        // ->selectRaw('*, (painStressLevelAfter+moodMoraleLevelAfter+continuousWellness)/15*100 AS performance')
+        // ->where('user_id',Auth::user()->id)
+        // ->get();
+
+        $afters = DB::table('survey_datas')
+        ->selectRaw('*, (painStressLevelAfter *20) AS painReduction, (moodMoraleLevelAfter)*20 AS moodMoraleIncrease')
         ->where('user_id',Auth::user()->id)
         ->get();
-        return view('company.survey_report',compact('views'));
+        return view('company.survey_report',compact('afters'));
     }
 }

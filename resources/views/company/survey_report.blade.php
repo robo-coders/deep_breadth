@@ -36,53 +36,78 @@
                                 <table class="table table-hover-animation mb-0">
                                     <thead>
                                         <tr>
-                                            <th> # </th>
+                                            <th> Participation </th>
                                             <th width="300">Department</th>
-                                            <th width="300">Performance</th>
+                                            <th width="300">Pain Reduction</th>
+                                            <th width="300">Mood Morale Increase</th>
                                             <th>Comments</th>
                                             <th>Date</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <?php $serial = 1; ?>
-                                    @foreach ($views as $view)
+                                    @foreach ($afters as $after)
                                         <tbody>
                                             <tr>
                                                 <th scope="row">{{$serial}}</th>
-                                                <td> {{$view->department_name}} </td>
+                                                <td> {{$after->department_name}} </td>
                                                 <td>
-                                                    <span>{{round($view->performance)}} %</span>
-                                                    @If($view->performance > '85')
+                                                    <span>{{round($after->painReduction)}} %</span>
+                                                    @If($after->painReduction > '85')
                                                         <div class="progress progress-bar-success mt-1 mb-0">
-                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->painReduction}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>
-                                                    @elseif($view->performance > '75')  
+                                                    @elseif($after->painReduction > '75')  
                                                         <div class="progress progress-bar-info mt-1 mb-0">
-                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->painReduction}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>  
-                                                    @elseif($view->performance > '70')  
+                                                    @elseif($after->painReduction > '70')  
                                                         <div class="progress progress-bar-warning mt-1 mb-0">
-                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->painReduction}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div> 
-                                                    @elseif($view->performance > '65')  
+                                                    @elseif($after->painReduction > '65')  
                                                         <div class="progress progress-bar-danger mt-1 mb-0">
-                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->painReduction}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>  
                                                     @else
                                                         <div class="progress progress-bar-dark mt-1 mb-0">
-                                                            <div class="progress-bar" role="progressbar" style="width: {{$view->performance}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->painReduction}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>      
                                                     @endif
                                                 </td>
-                                                <td> {{$view->comments}} </td>
-                                                <td> {{$view->created_at}} </td>
+                                                <td>
+                                                    <span>{{round($after->moodMoraleIncrease)}} %</span>
+                                                    @If($after->moodMoraleIncrease > '85')
+                                                        <div class="progress progress-bar-success mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->moodMoraleIncrease}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    @elseif($after->moodMoraleIncrease > '75')  
+                                                        <div class="progress progress-bar-info mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->moodMoraleIncrease}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>  
+                                                    @elseif($after->moodMoraleIncrease > '70')  
+                                                        <div class="progress progress-bar-warning mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->moodMoraleIncrease}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div> 
+                                                    @elseif($after->moodMoraleIncrease > '65')  
+                                                        <div class="progress progress-bar-danger mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->moodMoraleIncrease}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>  
+                                                    @else
+                                                        <div class="progress progress-bar-dark mt-1 mb-0">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$after->moodMoraleIncrease}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>      
+                                                    @endif
+                                                </td>
+                                                <td> {{$after->comments}} </td>
+                                                <td> {{$after->created_at}} </td>
                                                 <td> 
                                                     <div class="dropdown">
                                                         <button class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         Actions
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                           <a onclick="deleteSurveyComapny({{$view->id}})" class="dropdown-item">Delete</a>
+                                                           <a onclick="deleteSurveyComapny({{$after->id}})" class="dropdown-item">Delete</a>
                                                         </div>
                                                      </div>
                                                 </td>
