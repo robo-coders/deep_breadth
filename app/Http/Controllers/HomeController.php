@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use DB;
+use Auth;
 use App\user;
+use Carbon\Carbon;
 use App\users_info;
 use App\survey_data;
-use Auth;
-use DB;
+use Illuminate\Http\Request;
 use App\Http\Resources\UserResponse;
 
 class HomeController extends Controller
@@ -61,7 +62,16 @@ class HomeController extends Controller
     }
     public function company()
     {
+
+        $graphDays = Auth::user()->graph_setting
+        ->first()
+        ->value;
+        
+        $date = Carbon::now();
+        $sevenDaysEarlier = Carbon::now()->subDays($graphDays);
+
         $count = survey_data::where('user_id',Auth::user()->id)
+        ->whereBetween('created_at', [$sevenDaysEarlier,$date])
         ->get()
         ->count();
         return view('company.dashboard',compact('count'));
