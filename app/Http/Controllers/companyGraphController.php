@@ -48,9 +48,9 @@ class companyGraphController extends Controller
         ->sum('painStressLevelBefore');
         if($count > 0){
             $average = $sum / $count;
-            $average = round($count * 5 / $average);
+            $average = round($count * 30 / $average);
             //below line can be delete , nothing to think
-            $average = $average*10;
+            // $average = $average*10;
 
             return ['count' => $count, 'average' => $average];
         }else{
@@ -83,9 +83,9 @@ class companyGraphController extends Controller
         if($count > 0){
             // $average = $sum / $count * 5;
             $average = $sum / $count;
-            $average = round($count * 5 / $average);
+            $average = round($count * 30 / $average);
             //below line can be delete , nothing to think
-            $average = $average*10;
+            // $average = $average*10;
             return $average;
 
         }else{
