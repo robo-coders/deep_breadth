@@ -46,9 +46,14 @@ class companyGraphController extends Controller
         ->whereBetween('created_at', [$sevenDaysEarlier,$date])
         ->get()
         ->sum('painStressLevelBefore');
+        // return $sum; return 9
+        // return $count; return 6
         if($count > 0){
             $average = $sum / $count;
             $average = round($count * 30 / $average);
+            if($average >= 100){
+                $average = 100;
+            }
             //below line can be delete , nothing to think
             // $average = $average*10;
 
